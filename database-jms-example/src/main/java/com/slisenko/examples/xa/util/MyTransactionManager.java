@@ -1,4 +1,4 @@
-package com.slisenko.examples.xa;
+package com.slisenko.examples.xa.util;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import com.mysql.jdbc.jdbc2.optional.MysqlXid;
@@ -10,16 +10,10 @@ import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-/**
- * https://github.com/squarenerd/distributed_txn
- * http://www.exploredatabase.com/2014/07/two-phase-commit-protocol-in-pictures.html
- * https://dev.mysql.com/doc/refman/5.7/en/xa.html
- */
-public class TestMySQLTwoDatabases {
+public class MyTransactionManager {
 
-    public static void main(String[] args) throws SQLException, XAException {
+    public static void perform(WorkUnit unit) throws SQLException, XAException {
         XADataSource ds1 = createDS("distributed-tx-1");
         XADataSource ds2 = createDS("distributed-tx-2");
 
@@ -27,7 +21,6 @@ public class TestMySQLTwoDatabases {
         XAConnection xaCon2 = ds2.getXAConnection();
 
         // Prepare global transaction identifiers
-        // TODO why two different?
         Xid xId1 = createXid(1); // pass globally unique ID
         Xid xId2 = createXid(2); // pass globally unique ID
 
@@ -42,12 +35,7 @@ public class TestMySQLTwoDatabases {
         Connection con1 = xaCon1.getConnection();
         Connection con2 = xaCon2.getConnection();
 
-        Statement st1 = con1.createStatement();
-        Statement st2 = con2.createStatement();
-
-        // Do updates
-        st1.executeUpdate("insert into my_table (value) values ('xa-transaction')");
-        st2.executeUpdate("insert into my_table_2 (value) values ('xa-transaction')");
+        unit.doInTransaction(con1, con2);
 
         // Indicate that work is ended
         xaRes1.end(xId1, XAResource.TMSUCCESS); // If we want to fail, set TMFAIL

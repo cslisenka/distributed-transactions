@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7c04f75-c1d2-404a-816a-77ebc1b4e623" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/TestActiveMQ.java" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/TestActiveMQ.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/TestMySQL.java" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/TestMySQL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestBothSuccess.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestOneSuccessOneFail.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/util/MyTransactionManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/util/WorkUnit.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases.java" afterPath="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/database-jms-example/target/" />
@@ -20,22 +20,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TestMySQLTwoDatabases.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="33" column="49" lean-forward="true" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1496648418570" expanded="true" signature="1259:1313" ph="insert into my_table... " />
-                <marker date="1496648418570" expanded="true" signature="1344:1400" ph="insert into my_table... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -56,7 +41,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/TestMySQL.java" />
+        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases2.java" />
         <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases.java" />
+        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/MyTransactionManager.java" />
+        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/util/WorkUnit.java" />
+        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/util/MyTransactionManager.java" />
+        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestBothSuccess.java" />
+        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestOneSuccessOneFail.java" />
       </list>
     </option>
   </component>
@@ -190,6 +181,10 @@
               <option name="myItemId" value="examples" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -236,8 +231,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.slisenko.examples.xa" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -251,15 +251,75 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestMySQLTwoDatabases">
+  <component name="RunManager" selected="Application.TestOneSuccessOneFail">
     <configuration default="false" name="TestMySQLTwoDatabases" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.slisenko.examples.xa.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.slisenko.examples.xa.TestMySQLTwoDatabases" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="database-jms-example" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestMySQLTwoDatabases2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.slisenko.examples.xa.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.slisenko.examples.xa.TestMySQLTwoDatabases2" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="database-jms-example" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestBothSuccess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.slisenko.examples.xa.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="com.slisenko.examples.xa.TestMySQLTwoDatabases" />
+      <option name="MAIN_CLASS_NAME" value="com.slisenko.examples.xa.TestBothSuccess" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="database-jms-example" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestOneSuccessOneFail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.slisenko.examples.xa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.slisenko.examples.xa.TestOneSuccessOneFail" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -598,12 +658,18 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="1">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.TestMySQLTwoDatabases" />
+      <item index="1" class="java.lang.String" itemvalue="Application.TestMySQLTwoDatabases2" />
+      <item index="2" class="java.lang.String" itemvalue="Application.TestBothSuccess" />
+      <item index="3" class="java.lang.String" itemvalue="Application.TestOneSuccessOneFail" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.TestMySQLTwoDatabases" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.TestOneSuccessOneFail" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TestBothSuccess" />
+        <item index="2" class="java.lang.String" itemvalue="Application.TestMySQLTwoDatabases" />
+        <item index="3" class="java.lang.String" itemvalue="Application.TestMySQLTwoDatabases2" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
@@ -615,7 +681,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -626,12 +691,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58756137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -685,22 +750,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/jre/lib/rt.jar!/javax/transaction/xa/XAResource.class">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/jre/lib/rt.jar!/javax/transaction/xa/Xid.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="5" column="29" lean-forward="true" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        <state relative-caret-position="68">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/javax/sql/XADataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestMySQLTwoDatabases.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="e#3734#3735#0" expanded="true" />
+            <element signature="e#3777#3778#0" expanded="true" />
+            <marker date="1496653811789" expanded="true" signature="1686:1740" ph="insert into my_table... " />
+            <marker date="1496653811789" expanded="true" signature="1771:1827" ph="insert into my_table... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/util/WorkUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestOneSuccessOneFail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding>
+            <marker date="1496654568702" expanded="true" signature="519:567" ph="insert into my_table... " />
+            <marker date="1496654568702" expanded="true" signature="602:646" ph="insert into my_table_2... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/TestBothSuccess.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="33" column="49" lean-forward="true" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1496648418570" expanded="true" signature="1259:1313" ph="insert into my_table... " />
-            <marker date="1496648418570" expanded="true" signature="1344:1400" ph="insert into my_table... " />
+            <marker date="1496654224648" expanded="true" signature="513:567" ph="insert into my_table... " />
+            <marker date="1496654224648" expanded="true" signature="602:658" ph="insert into my_table_2... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/jre/lib/rt.jar!/javax/transaction/xa/XAResource.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="22" column="9" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/util/MyTransactionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="40" column="16" lean-forward="true" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3237#3238#0" expanded="true" />
+            <element signature="e#3280#3281#0" expanded="true" />
           </folding>
         </state>
       </provider>
