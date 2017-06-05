@@ -1,4 +1,4 @@
-package com.slisenko.examples;
+package com.slisenko.examples.test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package com.slisenko.examples;
+package com.slisenko.examples.test;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
