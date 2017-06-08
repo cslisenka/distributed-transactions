@@ -6,10 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="atomikos-example" />
+        <module name="atomikos-example (1)" />
+        <module name="atomikos-rest-transactions-example" />
+        <module name="atomikos-tcc-example" />
         <module name="database-jms-example" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="atomikos-example" target="1.8" />
+      <module name="atomikos-example (1)" target="1.8" />
+      <module name="atomikos-rest-transactions-example" target="1.8" />
+      <module name="atomikos-tcc-example" target="1.8" />
       <module name="database-jms-example" target="1.8" />
       <module name="distributed-tx" target="1.8" />
     </bytecodeTargetLevel>

@@ -25,6 +25,8 @@ public class TestActiveMQ {
         consumer.setMessageListener(new Listener());
 
         producer.send(session.createTextMessage("hello"));
+
+        con.close();
     }
 
     static class Listener implements ExceptionListener, MessageListener {

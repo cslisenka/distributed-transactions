@@ -1,6 +1,6 @@
-package com.slisenko.examples.xa;
+package com.slisenko.examples.xa.mysql;
 
-import com.slisenko.examples.xa.util.MyTransactionManager;
+import com.slisenko.examples.xa.mysql.util.MyTransactionManager;
 
 import javax.transaction.xa.XAException;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package com.slisenko.examples.xa.util;
+package com.slisenko.examples.xa.mysql;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import com.mysql.jdbc.jdbc2.optional.MysqlXid;
@@ -10,17 +10,23 @@ import javax.transaction.xa.XAResource;
 import javax.transaction.xa.Xid;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class MyTransactionManager {
+/**
+ * https://github.com/squarenerd/distributed_txn
+ * http://www.exploredatabase.com/2014/07/two-phase-commit-protocol-in-pictures.html
+ * https://dev.mysql.com/doc/refman/5.7/en/xa.html
+ */
+public class TestMySQLTwoDatabases {
 
-    public static void perform(WorkUnit unit) throws SQLException, XAException {
+    public static void main(String[] args) throws SQLException, XAException {
         XADataSource ds1 = createDS("distributed-tx-1");
         XADataSource ds2 = createDS("distributed-tx-2");
 
         XAConnection xaCon1 = ds1.getXAConnection();
         XAConnection xaCon2 = ds2.getXAConnection();
 
-        // Prepare global transaction identifiers
+        // Prepare global transaction identifiers for each transaction branch
         Xid xId1 = createXid(1); // pass globally unique ID
         Xid xId2 = createXid(2); // pass globally unique ID
 
@@ -35,7 +41,12 @@ public class MyTransactionManager {
         Connection con1 = xaCon1.getConnection();
         Connection con2 = xaCon2.getConnection();
 
-        unit.doInTransaction(con1, con2);
+        Statement st1 = con1.createStatement();
+        Statement st2 = con2.createStatement();
+
+        // Do updates
+        st1.executeUpdate("insert into my_table (value) values ('xa-transaction')");
+        st2.executeUpdate("insert into my_table_2 (value) values ('xa-transaction')");
 
         // Indicate that work is ended
         xaRes1.end(xId1, XAResource.TMSUCCESS); // If we want to fail, set TMFAIL
@@ -83,8 +94,8 @@ public class MyTransactionManager {
         gid[0] = (byte) 9;
         byte[] bid = new byte[1];
         bid[0] = (byte) bids;
-        byte[] gtrid = new byte[64];
-        byte[] bqual = new byte[64];
+        byte[] gtrid = new byte[64]; // Identifier of global transaction
+        byte[] bqual = new byte[64]; // Identifier of transaction branch
         System.arraycopy(gid, 0, gtrid, 0, 1);
         System.arraycopy(bid, 0, bqual, 0, 1);
         return new MysqlXid(gtrid, bqual, 0x1234);

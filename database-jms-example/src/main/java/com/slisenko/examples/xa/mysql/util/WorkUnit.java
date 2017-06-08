@@ -1,4 +1,4 @@
-package com.slisenko.examples.xa.util;
+package com.slisenko.examples.xa.mysql.util;
 
 import java.sql.Connection;
 import java.sql.SQLException;

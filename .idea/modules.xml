@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/atomikos-example/atomikos-example.iml" filepath="$PROJECT_DIR$/atomikos-example/atomikos-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/atomikos-example/atomikos-example (1).iml" filepath="$PROJECT_DIR$/atomikos-example/atomikos-example (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" filepath="$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/database-jms-example/database-jms-example.iml" filepath="$PROJECT_DIR$/database-jms-example/database-jms-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/distributed-tx.iml" filepath="$PROJECT_DIR$/distributed-tx.iml" />
     </modules>
   </component>
 </project>
