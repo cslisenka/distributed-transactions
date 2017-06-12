@@ -11,6 +11,7 @@
         <module name="atomikos-rest-transactions-example" />
         <module name="atomikos-tcc-example" />
         <module name="database-jms-example" />
+        <module name="event-sourcing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,6 +21,7 @@
       <module name="atomikos-tcc-example" target="1.8" />
       <module name="database-jms-example" target="1.8" />
       <module name="distributed-tx" target="1.8" />
+      <module name="event-sourcing" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

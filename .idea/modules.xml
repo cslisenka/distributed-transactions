@@ -3,9 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/atomikos-example/atomikos-example.iml" filepath="$PROJECT_DIR$/atomikos-example/atomikos-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/atomikos-example/atomikos-example (1).iml" filepath="$PROJECT_DIR$/atomikos-example/atomikos-example (1).iml" />
+      <module fileurl="file://C:\Work\JAVA tech talks\Distributed transactions\distributed-transactions\atomikos-example\atomikos-example (1).iml" filepath="C:\Work\JAVA tech talks\Distributed transactions\distributed-transactions\atomikos-example\atomikos-example (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" filepath="$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/database-jms-example/database-jms-example.iml" filepath="$PROJECT_DIR$/database-jms-example/database-jms-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/event-sourcing/event-sourcing.iml" filepath="$PROJECT_DIR$/event-sourcing/event-sourcing.iml" />
     </modules>
   </component>
 </project>

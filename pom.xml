@@ -12,6 +12,7 @@
         <module>database-jms-example</module>
         <module>atomikos-example</module>
         <module>atomikos-tcc-example</module>
+        <module>event-sourcing</module>
     </modules>
 
     <dependencyManagement>

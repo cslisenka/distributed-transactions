@@ -1,5 +1,6 @@
 package com.slisenko.atomikos;
 
+import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.atomikos.jms.AtomikosConnectionFactoryBean;
@@ -32,11 +33,16 @@ public class AtomikosExample {
         amq.init();
 
         // TODO difference with usage of UserTransaction?
-        txManager.begin(); // TODO how does it recognize which data sources are involved? ThreadLocals?
+        UserTransaction ut = new UserTransactionImp();
+//        txManager.begin(); // TODO how does it recognize which data sources are involved? ThreadLocals?
+        ut.begin();
 
         // Work with resources like no transaction manager exist
         Connection con1 = db1.getConnection();
+        con1.setAutoCommit(false);
         Connection con2 = db2.getConnection();
+        con1.setAutoCommit(false);
+
         javax.jms.Connection conAmq = amq.createConnection();
         Session session = conAmq.createSession(true, Session.SESSION_TRANSACTED);
         Destination queue = session.createQueue("ATOMIKOS.TEST");
@@ -52,7 +58,9 @@ public class AtomikosExample {
         producer.send(session.createTextMessage("xa-transaction + atomikos")); // TODO use embedded broker and stop it here
 
 //        txManager.commit();
-        txManager.rollback();
+//        txManager.rollback();
+//        ut.commit();
+        ut.rollback();
 
         session.close();
         conAmq.close();
@@ -76,6 +84,7 @@ public class AtomikosExample {
 
     public static AtomikosDataSourceBean createMySQLDS(String dbName) {
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
+//        ds.setLogWriter(null); // TODO try custom log writer, do we need log reader?
         ds.setUniqueResourceName(dbName);
         ds.setXaDataSource(createDS(dbName));
         ds.setMaxPoolSize(10);
