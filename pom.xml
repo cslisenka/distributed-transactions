@@ -11,8 +11,13 @@
     <modules>
         <module>database-jms-example</module>
         <module>atomikos-example</module>
+        <module>narayana-example</module>
         <module>atomikos-tcc-example</module>
         <module>event-sourcing</module>
+        <module>spring-statemachine</module>
+        <module>axon-example</module>
+        <module>axon-example-receiver</module>
+        <module>eventuate-example</module>
     </modules>
 
     <dependencyManagement>

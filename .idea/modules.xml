@@ -3,10 +3,16 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/atomikos-example/atomikos-example.iml" filepath="$PROJECT_DIR$/atomikos-example/atomikos-example.iml" />
-      <module fileurl="file://C:\Work\JAVA tech talks\Distributed transactions\distributed-transactions\atomikos-example\atomikos-example (1).iml" filepath="C:\Work\JAVA tech talks\Distributed transactions\distributed-transactions\atomikos-example\atomikos-example (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" filepath="$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/axon-example/axon-example.iml" filepath="$PROJECT_DIR$/axon-example/axon-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/axon-example-receiver/axon-example (1).iml" filepath="$PROJECT_DIR$/axon-example-receiver/axon-example (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/axon-example-receiver/axon-example-receiver.iml" filepath="$PROJECT_DIR$/axon-example-receiver/axon-example-receiver.iml" />
       <module fileurl="file://$PROJECT_DIR$/database-jms-example/database-jms-example.iml" filepath="$PROJECT_DIR$/database-jms-example/database-jms-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-tx.iml" filepath="$PROJECT_DIR$/distributed-tx.iml" />
       <module fileurl="file://$PROJECT_DIR$/event-sourcing/event-sourcing.iml" filepath="$PROJECT_DIR$/event-sourcing/event-sourcing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eventuate-example/eventuate-example.iml" filepath="$PROJECT_DIR$/eventuate-example/eventuate-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/narayana-example/narayana-example.iml" filepath="$PROJECT_DIR$/narayana-example/narayana-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-statemachine/spring-statemachine.iml" filepath="$PROJECT_DIR$/spring-statemachine/spring-statemachine.iml" />
     </modules>
   </component>
 </project>
