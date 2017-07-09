@@ -10,6 +10,8 @@
         <module name="atomikos-tcc-example" />
         <module name="axon-example" />
         <module name="axon-example-receiver" />
+        <module name="banking" />
+        <module name="banking-1" />
         <module name="database-jms-example" />
         <module name="event-sourcing" />
         <module name="eventuate-example" />
@@ -29,6 +31,10 @@
       <module name="axon-example" target="1.8" />
       <module name="axon-example (1)" target="1.8" />
       <module name="axon-example-receiver" target="1.8" />
+      <module name="banking" target="1.8" />
+      <module name="banking-1" target="1.8" />
+      <module name="banking-distributed-tx" target="1.8" />
+      <module name="banking-queue" target="1.8" />
       <module name="database-jms-example" target="1.8" />
       <module name="distributed-tx" target="1.8" />
       <module name="event-sourcing" target="1.8" />

@@ -3,6 +3,9 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/axon-example" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/axon-example-receiver" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/banking" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/banking-distributed-tx" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/banking-queue" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-statemachine" charset="UTF-8" />
   </component>
 </project>
