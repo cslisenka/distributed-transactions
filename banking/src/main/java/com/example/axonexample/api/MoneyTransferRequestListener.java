@@ -1,6 +1,7 @@
 package com.example.axonexample.api;
 
 import com.example.axonexample.model.OverdraftException;
+import com.example.axonexample.service.LocalTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import javax.jms.MessageListener;
 public class MoneyTransferRequestListener implements MessageListener {
 
     @Autowired
-    private MoneyTransferAPI moneyTransferAPI;
+    private LocalTransferService localTransferService;
 
     @Override
     public void onMessage(Message message) {
@@ -22,7 +23,7 @@ public class MoneyTransferRequestListener implements MessageListener {
             if (message instanceof MapMessage) {
                 MapMessage map = (MapMessage) message;
 
-                moneyTransferAPI.doTransfer(
+                localTransferService.doTransfer(
                         map.getString("from"), map.getString("to"), map.getInt("amount"));
             }
         } catch (JMSException e) {

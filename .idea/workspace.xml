@@ -2,31 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a4b6f3d-5920-47e2-b929-f88b82b1d5e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_broker_5_14_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_openwire_legacy_5_14_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_activemq_1_5_4_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jms_4_3_7_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/sql/bank-1.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/BankApplication.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferAPI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferRequestListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/QueuedMoneyTransferAPI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/Account.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/AccountRepository.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/MoneyTransfer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/MoneyTransferRepository.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/OverdraftException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/resources/application.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/resources/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/sql/partner_bank.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/PartnerMoneyTransfer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/PartnerMoneyTransferRepository.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/ExternalTransferService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/LocalTransferService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/PartnerTransferService.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/QueuedMoneyTransferAPI.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/sql/bank-1.sql" afterPath="$PROJECT_DIR$/banking/sql/bank.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/BankApplication.java" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/BankApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferAPI.java" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferAPI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferRequestListener.java" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferRequestListener.java" />
     </list>
     <ignored path="$PROJECT_DIR$/atomikos-tcc-example/target/" />
     <ignored path="$PROJECT_DIR$/event-sourcing/target/" />
@@ -60,7 +48,28 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="PartnerTransferService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/PartnerTransferService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="523">
+              <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoneyTransferAPI.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferAPI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="65" column="62" lean-forward="true" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -73,12 +82,14 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>statisticsSource</find>
-      <find>bank1</find>
       <find>spring-jms</find>
+      <find>CREATE DATABASE  IF NOT EXISTS \`bank1\` \/\*\!40100 DEFAULT CHARACTER SET utf8 \*\/\;\nUSE \`bank1\`\;\n\-\- MySQL dump 10\.13  Distrib 5\.7\.9\, for Win64 \(x86_64\)\n\-\-\n\-\- Host\: localhost    Database\: bank1\n\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\n\-\- Server version\	5\.7\.12\-log\n\n\/\*\!40101 SET \@OLD_CHARACTER_SET_CLIENT\=\@\@CHARACTER_SET_CLIENT \*\/\;\n\/\*\!40101 SET \@OLD_CHARACTER_SET_RESULTS\=\@\@CHARACTER_SET_RESULTS \*\/\;\n\/\*\!40101 SET \@OLD_COLLATION_CONNECTION\=\@\@COLLATION_CONNECTION \*\/\;\n\/\*\!40101 SET NAMES utf8 \*\/\;\n\/\*\!40103 SET \@OLD_TIME_ZONE\=\@\@TIME_ZONE \*\/\;\n\/\*\!40103 SET TIME_ZONE\=\'\+00\:00\' \*\/\;\n\/\*\!40014 SET \@OLD_UNIQUE_CHECKS\=\@\@UNIQUE_CHECKS\, UNIQUE_CHECKS\=0 \*\/\;\n\/\*\!40014 SET \@OLD_FOREIGN_KEY_CHECKS\=\@\@FOREIGN_KEY_CHECKS\, FOREIGN_KEY_CHECKS\=0 \*\/\;\n\/\*\!40101 SET \@OLD_SQL_MODE\=\@\@SQL_MODE\, SQL_MODE\=\'NO_AUTO_VALUE_ON_ZERO\' \*\/\;\n\/\*\!40111 SET \@OLD_SQL_NOTES\=\@\@SQL_NOTES\, SQL_NOTES\=0 \*\/\;\n\n\-\-\n\-\- Table structure for table \`account\`\n\-\-\n\nDROP TABLE IF EXISTS \`account\`\;\n\/\*\!40101 SET \@saved_cs_client     \= \@\@character_set_client \*\/\;\n\/\*\!40101 SET character_set_client \= utf8 \*\/\;\nCREATE TABLE \`account\` \(\n  \`identifier\` varchar\(10\) NOT NULL\,\n  \`balance\` int\(11\) NOT NULL\,\n  PRIMARY KEY \(\`identifier\`\)\,\n  UNIQUE KEY \`identifier_UNIQUE\` \(\`identifier\`\)\n\) ENGINE\=InnoDB DEFAULT CHARSET\=utf8\;\n\/\*\!40101 SET character_set_client \= \@saved_cs_client \*\/\;\n\n\-\-\n\-\- Dumping data for table \`account\`\n\-\-\n\nLOCK TABLES \`account\` WRITE\;\n\/\*\!40000 ALTER TABLE \`account\` DISABLE KEYS \*\/\;\nINSERT INTO \`account\` VALUES \(\'acc1\'\,800\)\,\(\'acc2\'\,5200\)\,\(\'acc3\'\,10000\)\;\n\/\*\!40000 ALTER TABLE \`account\` ENABLE KEYS \*\/\;\nUNLOCK TABLES\;\n\n\-\-\n\-\- Table structure for table \`money_transfer\`\n\-\-\n\nDROP TABLE IF EXISTS \`money_transfer\`\;\n\/\*\!40101 SET \@saved_cs_client     \= \@\@character_set_client \*\/\;\n\/\*\!40101 SET character_set_client \= utf8 \*\/\;\nCREATE TABLE \`money_transfer\` \(\n  \`transfer_id\` int\(11\) NOT NULL AUTO_INCREMENT\,\n  \`from_account\` varchar\(10\) NOT NULL\,\n  \`to_account\` varchar\(10\) NOT NULL\,\n  \`amount\` int\(11\) NOT NULL\,\n  PRIMARY KEY \(\`transfer_id\`\)\,\n  UNIQUE KEY \`transfer_id_UNIQUE\` \(\`transfer_id\`\)\,\n  KEY \`from_account_idx\` \(\`from_account\`\)\,\n  KEY \`to_account_idx\` \(\`to_account\`\)\,\n  CONSTRAINT \`from_account\` FOREIGN KEY \(\`from_account\`\) REFERENCES \`account\` \(\`identifier\`\) ON DELETE NO ACTION ON UPDATE NO ACTION\,\n  CONSTRAINT \`to_account\` FOREIGN KEY \(\`to_account\`\) REFERENCES \`account\` \(\`identifier\`\) ON DELETE NO ACTION ON UPDATE NO ACTION\n\) ENGINE\=InnoDB AUTO_INCREMENT\=5 DEFAULT CHARSET\=utf8\;\n\/\*\!40101 SET character_set_client \= \@saved_cs_client \*\/\;\n\n\-\-\n\-\- Dumping data for table \`money_transfer\`\n\-\-\n\nLOCK TABLES \`money_transfer\` WRITE\;\n\/\*\!40000 ALTER TABLE \`money_transfer\` DISABLE KEYS \*\/\;\nINSERT INTO \`money_transfer\` VALUES \(2\,\'acc1\'\,\'acc2\'\,100\)\,\(3\,\'acc1\'\,\'acc2\'\,100\)\,\(4\,\'acc1\'\,\'acc2\'\,100\)\;\n\/\*\!40000 ALTER TABLE \`money_transfer\` ENABLE KEYS \*\/\;\nUNLOCK TABLES\;\n\/\*\!40103 SET TIME_ZONE\=\@OLD_TIME_ZONE \*\/\;\n\n\/\*\!40101 SET SQL_MODE\=\@OLD_SQL_MODE \*\/\;\n\/\*\!40014 SET FOREIGN_KEY_CHECKS\=\@OLD_FOREIGN_KEY_CHECKS \*\/\;\n\/\*\!40014 SET UNIQUE_CHECKS\=\@OLD_UNIQUE_CHECKS \*\/\;\n\/\*\!40101 SET CHARACTER_SET_CLIENT\=\@OLD_CHARACTER_SET_CLIENT \*\/\;\n\/\*\!40101 SET CHARACTER_SET_RESULTS\=\@OLD_CHARACTER_SET_RESULTS \*\/\;\n\/\*\!40101 SET COLLATION_CONNECTION\=\@OLD_COLLATION_CONNECTION \*\/\;\n\/\*\!40111 SET SQL_NOTES\=\@OLD_SQL_NOTES \*\/\;\n\n\-\- Dump completed on 2017\-07\-08 21\:50\:18\n</find>
+      <find>bank1</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>bank2</replace>
+      <replace>partner_bank</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\axon-example</dir>
@@ -132,10 +143,16 @@
         <option value="$PROJECT_DIR$/banking-1/pom.xml" />
         <option value="$PROJECT_DIR$/banking/pom.xml" />
         <option value="$PROJECT_DIR$/banking/src/main/resources/static/index.html" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferAPI.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/QueuedMoneyTransferAPI.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferRequestListener.java" />
         <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/BankApplication.java" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/LocalTransferService.java" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferRequestListener.java" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/QueuedMoneyTransferAPI.java" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/ExternalTransferService.java" />
+        <option value="$PROJECT_DIR$/banking/sql/partner-bank.sql" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/PartnerMoneyTransferRepository.java" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/PartnerMoneyTransfer.java" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/PartnerTransferService.java" />
+        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferAPI.java" />
       </list>
     </option>
   </component>
@@ -271,10 +288,6 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -298,11 +311,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="axonexample" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,6 +346,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="axonexample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-tx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="axonexample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -385,11 +436,11 @@
       <recent name="com.example.axonexample.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking\sql" />
       <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking-distributed-tx\sql" />
       <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions" />
       <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking-1\sql" />
       <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\axon-example-receiver" />
-      <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\axon-example" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -883,37 +934,38 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24357034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5744681" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24357034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7528642" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31694403" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31694403" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5744681" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -976,40 +1028,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/axon-example/src/main/java/com/example/axonexample/commands/ComplaintAggregate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/util/function/Function.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="48" column="6" lean-forward="false" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/axon-example/src/main/java/com/example/axonexample/api/StatisticsAPI.java" />
-    <entry file="file://$PROJECT_DIR$/axon-example/src/main/java/com/example/axonexample/api/ComplaintsAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/axon-example-receiver/src/main/java/com/example/axonexample/commands/ComplaintAggregate.java" />
-    <entry file="file://$PROJECT_DIR$/axon-example-receiver/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/axon-example/src/main/java/com/example/axonexample/AxonExampleApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1072,13 +1090,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="34" lean-forward="false" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/MoneyTransferRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="85" lean-forward="false" selection-start-line="6" selection-start-column="85" selection-end-line="6" selection-end-column="85" />
         </state>
       </provider>
     </entry>
@@ -1148,13 +1159,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
           <caret line="49" column="5" lean-forward="false" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/sql/bank-1.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1269,24 +1273,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/QueuedMoneyTransferAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferRequestListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jms/4.3.7.RELEASE/spring-jms-4.3.7.RELEASE.jar!/org/springframework/jms/listener/SimpleMessageListenerContainer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-769">
@@ -1300,16 +1286,101 @@
         <state relative-caret-position="136">
           <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
           <folding>
-            <element signature="e#1185#1186#0" expanded="true" />
-            <element signature="e#1241#1242#0" expanded="true" />
+            <element signature="e#1126#1127#0" expanded="true" />
+            <element signature="e#1182#1183#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/QueuedMoneyTransferAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/ExternalTransferService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/LocalTransferService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/sql/bank.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="31" lean-forward="true" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/sql/partner_bank.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/PartnerMoneyTransferRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="90" lean-forward="false" selection-start-line="6" selection-start-column="90" selection-end-line="6" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/MoneyTransferRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="85" lean-forward="false" selection-start-line="6" selection-start-column="85" selection-end-line="6" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/model/PartnerMoneyTransfer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferRequestListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/service/PartnerTransferService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/axonexample/api/MoneyTransferAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="217">
+          <caret line="65" column="62" lean-forward="true" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
           <folding />
         </state>
       </provider>

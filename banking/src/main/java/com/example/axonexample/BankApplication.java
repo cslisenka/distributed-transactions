@@ -1,7 +1,6 @@
 package com.example.axonexample;
 
 import com.example.axonexample.api.MoneyTransferRequestListener;
-import com.example.axonexample.api.QueuedMoneyTransferAPI;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
