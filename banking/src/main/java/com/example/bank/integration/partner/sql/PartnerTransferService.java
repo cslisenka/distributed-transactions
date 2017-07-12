@@ -37,6 +37,7 @@ public class PartnerTransferService {
         Account partnerAccount = partner.queryForObject("select * from london_account where identifier = ? for update",
                 new AccountRowMapper(), partnerAccountId);
 
+        // TODO set status as CONFIRMED
         // Change balance partner account + save transfer in partner DB
         partner.update("UPDATE london_account SET balance = ? WHERE identifier = ?", (partnerAccount.getBalance() + amount), partnerAccountId);
         partner.update("INSERT INTO london_partner_money_transfer (transfer_id, account, partner_account, amount, direction) " +

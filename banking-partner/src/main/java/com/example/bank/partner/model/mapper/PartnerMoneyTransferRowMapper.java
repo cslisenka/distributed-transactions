@@ -13,8 +13,10 @@ public class PartnerMoneyTransferRowMapper implements RowMapper<PartnerMoneyTran
         return new PartnerMoneyTransfer(
                 rs.getString("transfer_id"),
                 rs.getString("account"),
-                rs.getString("partner_account"),
+                rs.getString("external_account"),
                 rs.getInt("amount"),
-                PartnerMoneyTransfer.Direction.valueOf(rs.getString("direction")));
+                PartnerMoneyTransfer.Direction.valueOf(rs.getString("direction")),
+                PartnerMoneyTransfer.Status.valueOf(rs.getString("status")),
+                rs.getString("cancellation_reason"));
     }
 }
