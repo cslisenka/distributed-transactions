@@ -1,4 +1,4 @@
-package com.example.bank.service;
+package com.example.bank.api;
 
 import com.example.bank.model.Account;
 import com.example.bank.model.OverdraftException;
@@ -20,7 +20,7 @@ public class LocalTransferService {
     private JdbcTemplate jdbc;
 
     @Transactional
-    public void doTransfer(String from, String to, int amount) throws OverdraftException {
+    public void doTransfer(String transferId, String from, String to, int amount) throws OverdraftException {
         Account accountFrom = jdbc.queryForObject("select * from account where identifier = ? for update",
                 new AccountRowMapper(), from);
         Account accountTo = jdbc.queryForObject("select * from account where identifier = ? for update",
@@ -35,7 +35,8 @@ public class LocalTransferService {
         jdbc.update("update account set balance = ? where identifier = ?",
                 accountTo.getBalance() + amount, to);
 
-        jdbc.update("insert into money_transfer (from_account, to_account, amount) values (?, ?, ?)",
-            from, to, amount);
+        // We need transfer ID to avoid executing money transfer multiple times in case of retries
+        jdbc.update("insert into money_transfer (transfer_id, from_account, to_account, amount) values (?, ?, ?, ?)",
+            transferId, from, to, amount);
     }
 }

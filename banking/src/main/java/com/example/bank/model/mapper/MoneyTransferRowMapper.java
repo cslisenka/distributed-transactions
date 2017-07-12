@@ -11,9 +11,9 @@ public class MoneyTransferRowMapper implements RowMapper<MoneyTransfer> {
     @Override
     public MoneyTransfer mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new MoneyTransfer(
-                rs.getInt("transfer_id"),
-                rs.getString("from_account"),
-                rs.getString("to_account"),
-                rs.getInt("amount"));
+            rs.getString("transfer_id"),
+            rs.getString("from_account"),
+            rs.getString("to_account"),
+            rs.getInt("amount"));
     }
 }

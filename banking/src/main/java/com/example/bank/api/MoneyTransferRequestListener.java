@@ -1,7 +1,6 @@
 package com.example.bank.api;
 
 import com.example.bank.model.OverdraftException;
-import com.example.bank.service.LocalTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,12 +23,13 @@ public class MoneyTransferRequestListener implements MessageListener {
                 MapMessage map = (MapMessage) message;
 
                 localTransferService.doTransfer(
-                        map.getString("from"), map.getString("to"), map.getInt("amount"));
+                        map.getString("transfer_id"), map.getString("from"),
+                        map.getString("to"), map.getInt("amount"));
             }
         } catch (JMSException e) {
             throw new RuntimeException(e);
         } catch (OverdraftException e) {
-            // TODO handle overdraft
+            // TODO handle overdraft, may be mark transfer as failed in DB? or send to failed queue?
             e.printStackTrace();
         }
     }

@@ -11,7 +11,7 @@ public class PartnerMoneyTransferRowMapper implements RowMapper<PartnerMoneyTran
     @Override
     public PartnerMoneyTransfer mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new PartnerMoneyTransfer(
-                rs.getInt("transfer_id"),
+                rs.getString("transfer_id"),
                 rs.getString("account"),
                 rs.getString("partner_account"),
                 rs.getInt("amount"),

@@ -2,14 +2,13 @@ package com.example.bank.model;
 
 public class PartnerMoneyTransfer {
 
-    private Integer transferId;
-
+    private String transferId;
     private String account;
     private String partnerAccount;
     private int amount;
     private Direction direction;
 
-    public PartnerMoneyTransfer(Integer transferId, String account, String partnerAccount, int amount, Direction direction) {
+    public PartnerMoneyTransfer(String transferId, String account, String partnerAccount, int amount, Direction direction) {
         this.transferId = transferId;
         this.account = account;
         this.partnerAccount = partnerAccount;
@@ -17,7 +16,7 @@ public class PartnerMoneyTransfer {
         this.direction = direction;
     }
 
-    public Integer getTransferId() {
+    public String getTransferId() {
         return transferId;
     }
 

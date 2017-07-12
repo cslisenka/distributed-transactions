@@ -1,4 +1,4 @@
-package com.example.bank.service;
+package com.example.bank.integration.external;
 
 import org.springframework.stereotype.Service;
 

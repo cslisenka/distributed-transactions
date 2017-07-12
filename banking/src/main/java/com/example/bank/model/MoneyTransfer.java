@@ -2,7 +2,7 @@ package com.example.bank.model;
 
 public class MoneyTransfer {
 
-    private Integer transferId;
+    private String transferId;
 
     private String fromAccount;
 
@@ -10,14 +10,14 @@ public class MoneyTransfer {
 
     private int amount;
 
-    public MoneyTransfer(Integer transferId, String fromAccount, String toAccount, int amount) {
+    public MoneyTransfer(String transferId, String fromAccount, String toAccount, int amount) {
         this.transferId = transferId;
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
         this.amount = amount;
     }
 
-    public Integer getTransferId() {
+    public String getTransferId() {
         return transferId;
     }
 
