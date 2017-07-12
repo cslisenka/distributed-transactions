@@ -3,7 +3,6 @@ package com.example.bank.config;
 import com.example.bank.api.MoneyTransferRequestListener;
 import com.example.bank.integration.partner.sql.PartnerTransferService;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.SimpleMessageListenerContainer;
-import org.springframework.jmx.support.MBeanServerFactoryBean;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;

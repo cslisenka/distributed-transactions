@@ -6,7 +6,6 @@ import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.example.bank.integration.partner.sql.PartnerTransferService;
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import org.apache.activemq.ActiveMQXAConnectionFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.jta.atomikos.AtomikosConnectionFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +13,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jmx.support.MBeanServerFactoryBean;
 
 import javax.sql.XADataSource;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
-import javax.transaction.UserTransaction;
 
 @Configuration
 public class XAConfiguration {

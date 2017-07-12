@@ -19,6 +19,7 @@
         <module>axon-example-receiver</module>
         <module>eventuate-example</module>
         <module>banking</module>
+        <module>banking-partner</module>
     </modules>
 
     <dependencyManagement>

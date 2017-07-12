@@ -12,6 +12,7 @@
         <module name="axon-example-receiver" />
         <module name="banking" />
         <module name="banking-1" />
+        <module name="banking-partner" />
         <module name="database-jms-example" />
         <module name="event-sourcing" />
         <module name="eventuate-example" />
@@ -34,6 +35,7 @@
       <module name="banking" target="1.8" />
       <module name="banking-1" target="1.8" />
       <module name="banking-distributed-tx" target="1.8" />
+      <module name="banking-partner" target="1.8" />
       <module name="banking-queue" target="1.8" />
       <module name="database-jms-example" target="1.8" />
       <module name="distributed-tx" target="1.8" />
