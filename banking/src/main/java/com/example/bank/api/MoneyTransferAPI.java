@@ -1,11 +1,12 @@
 package com.example.bank.api;
 
 import com.atomikos.icatch.jta.UserTransactionImp;
+import com.example.bank.integration.partner.HTTPTransferService;
 import com.example.bank.model.*;
 import com.example.bank.model.mapper.AccountRowMapper;
 import com.example.bank.model.mapper.MoneyTransferRowMapper;
 import com.example.bank.model.mapper.PartnerMoneyTransferRowMapper;
-import com.example.bank.integration.partner.sql.PartnerTransferService;
+import com.example.bank.integration.partner.SQLTransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -31,11 +32,14 @@ public class MoneyTransferAPI {
 
     @Autowired
     @Qualifier("partnerTransferService")
-    private PartnerTransferService partnerTransferService;
+    private SQLTransferService sqlTransferService;
 
     @Autowired
     @Qualifier("xaPartnerTransferService")
-    private PartnerTransferService xaPartnerTransferService;
+    private SQLTransferService xaSQLTransferService;
+
+    @Autowired
+    private HTTPTransferService httpTransferService;
 
     @Autowired
     @Qualifier("localJdbc")
@@ -72,8 +76,14 @@ public class MoneyTransferAPI {
     @PostMapping("/transferMoneyToPartner")
     public void transferMoneyToPartner(@RequestBody Map<String, String> request) throws OverdraftException {
         String transferId = UUID.randomUUID().toString();
-        partnerTransferService.doTransfer(transferId, request.get("from"),
+        sqlTransferService.doTransfer(transferId, request.get("from"),
                 request.get("to"), Integer.parseInt(request.get("amount")));
+    }
+
+    @PostMapping("/transferMoneyToPartnerWS")
+    public void transferMoneyToPartnerWS(@RequestBody Map<String, String> request) throws OverdraftException {
+        String transferId = httpTransferService.reserveMoney(request.get("from"), request.get("to"), Integer.parseInt(request.get("amount")));
+        httpTransferService.confirm(transferId);
     }
 
     @PostMapping("/xaTransferMoneyToPartner")
@@ -82,7 +92,7 @@ public class MoneyTransferAPI {
         tx.begin();
         try {
             String transferId = UUID.randomUUID().toString();
-            xaPartnerTransferService.doTransfer(transferId, request.get("from"),
+            xaSQLTransferService.doTransfer(transferId, request.get("from"),
                     request.get("to"), Integer.parseInt(request.get("amount")));
             tx.commit();
         } catch (Exception e) {

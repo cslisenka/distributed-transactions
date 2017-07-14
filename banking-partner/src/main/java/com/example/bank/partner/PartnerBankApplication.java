@@ -11,17 +11,26 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 @RestController
 @Configuration
 @SpringBootApplication
 public class PartnerBankApplication {
+
+    public static final String CONFIRMED = "CONFIRMED";
+    public static final String RESERVED = "RESERVED";
+    public static final String CANCELLED = "CANCELLED";
 
 	public static void main(String[] args) {
 		SpringApplication.run(PartnerBankApplication.class, args);
@@ -29,75 +38,115 @@ public class PartnerBankApplication {
 
 	@GetMapping
 	public List<Account> getAccounts() {
-		return jdbc().query("select * from london_account", new AccountRowMapper());
+		return db().query("select * from london_account", new AccountRowMapper());
 	}
 
-	@GetMapping("/transfers")
-	public List<PartnerMoneyTransfer> getMoneyTransfers() {
-		return jdbc().query("select * from london_money_transfer", new PartnerMoneyTransferRowMapper());
+	@GetMapping("/transfer/status/{status}")
+	public List<PartnerMoneyTransfer> getMoneyTransfers(@PathVariable String status) {
+		if (status != null) {
+			return db().query("select * from london_money_transfer WHERE status = ?", new PartnerMoneyTransferRowMapper(), status);
+		} else {
+			return db().query("select * from london_money_transfer", new PartnerMoneyTransferRowMapper());
+		}
 	}
 
 	// TODO add transfer from partners to our bank
-	@PostMapping("/reserveMoney")
+	@PostMapping("/transfer/reserve")
 	public String reserveMoney(@RequestBody Map<String, String> request) throws OverdraftException {
 		String transferId = UUID.randomUUID().toString();
 
-		// TODO begin transaction manually (use transaction template and manual transaction management
-		jdbc().update("INSERT INTO london_money_transfer (transfer_id, account, external_account, " +
-			"amount, direction, status) VALUES (?, ?, ?, ?, ?, ?)",
-				transferId, request.get("to"), request.get("from"),
-				Integer.parseInt(request.get("amount")), "IN", "RESERVED"); // TODO add reservation time
+		transaction().execute(tx -> {
+            int rows = db().update("INSERT INTO london_money_transfer (transfer_id, account, external_account, " +
+                "amount, direction, status) VALUES (?, ?, ?, ?, ?, ?)",
+                transferId, request.get("to"), request.get("from"),
+                Integer.parseInt(request.get("amount")), "IN", RESERVED); // TODO add reservation time
 
-		// TODO commit transaction manually
+            boolean isSuccess = rows == 1;
+            if (!isSuccess) {
+                tx.setRollbackOnly();
+            }
+            return isSuccess;
+        });
+
 		// TODO run background process to cancel all transactions which older then 30 minutes
 
         return transferId;
 	}
 
-    @PostMapping("/confirmTransfer/{transferId}")
+    @PostMapping("/transfer/{transferId}/confirm")
     public void confirmTransfer(@PathVariable String transferId) throws OverdraftException {
-		// TODO begin transaction manually
+		transaction().execute(tx -> {
+            // Search and lock money transfer
+            PartnerMoneyTransfer transfer = db().queryForObject("SELECT * FROM london_money_transfer WHERE transfer_id = ? AND status = ? FOR UPDATE",
+                    new PartnerMoneyTransferRowMapper(), transferId, RESERVED);
 
-		// Search and lock money transfer
-		PartnerMoneyTransfer transfer = jdbc().queryForObject("SELECT * FROM london_money_transfer WHERE transfer_id = ? AND status = ? FOR UPDATE",
-				new PartnerMoneyTransferRowMapper(), transferId, "RESERVED");
+            // Search and lock account
+            Account account = db().queryForObject("SELECT * FROM london_account WHERE identifier=? FOR UPDATE",
+                    new AccountRowMapper(), transfer.getAccount());
 
-		// Search and lock account
-		Account account = jdbc().queryForObject("SELECT * FROM london_account WHERE identifier=? FOR UPDATE",
-				new AccountRowMapper(), transfer.getAccount());
+            // No validation needed for incoming transfer, needed for outgoing transfer
+            int transferUpdatedRows = db().update("UPDATE london_money_transfer SET status = ? WHERE transfer_id = ? AND status = ?",
+                    CONFIRMED, transferId, RESERVED);
 
-		// No validation needed for incoming transfer, needed for outgoing transfer
-		int updatedRows = jdbc().update("UPDATE london_money_transfer SET status = ? WHERE transfer_id = ? AND status = ?",
-				"CONFIRMED", transferId, "RESERVED");
-		// TODO assert updated rows
+            int accountUpdatedRows = db().update("UPDATE london_account SET balance = ? WHERE identifier = ?",
+                    account.getBalance() + transfer.getAmount(), account.getIdentifier());
 
-		int updatedAccRows = jdbc().update("UPDATE london_account SET balance = ? WHERE identifier = ?",
-				account.getBalance() + transfer.getAmount(), account.getIdentifier());
-		// TODO assert updated rows
-
-		// TODO commit transaction manually
+            boolean isSuccess = (transferUpdatedRows == 1) && (accountUpdatedRows == 1);
+            if (!isSuccess) {
+                tx.setRollbackOnly();
+            }
+            return isSuccess;
+        });
     }
 
-    @PostMapping("/cancelTransfer/{transferId}")
+    @PostMapping("/transfer/{transferId}/cancel")
     public void cancelTransfer(@PathVariable String transferId) throws OverdraftException {
-		// TODO begin transaction manually
+		transaction().execute(tx -> {
+            int updatedRows = db().update("UPDATE london_money_transfer SET status = ?, cancellation_reason = ? " +
+                "WHERE transfer_id = ? AND status = ?",
+                    CANCELLED, "cancelled by web-service call", transferId, RESERVED);
 
-		int updatedRows = jdbc().update("UPDATE london_money_transfer SET status = ?, cancellation_reason = ? " +
-                        "WHERE transfer_id = ? AND status = ?",
-				"CANCELLED", "cancelled by web-service call", transferId, "RESERVED");
-		// TODO assert updated rows
-
-		// TODO commit transaction manually
+            boolean isSuccess = (updatedRows == 1);
+            if (!isSuccess) {
+                tx.setRollbackOnly();
+            }
+            return isSuccess;
+        });
     }
+
+    // Needed by XA resource
+    @GetMapping("/transfer/unfinished")
+    public List<String> getUnfinishedTransfers() {
+		return db().queryForList("select transfer_id from london_money_transfer WHERE status = ?", String.class, RESERVED);
+	}
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(dataSource());
+	}
 
 	@Bean
-	public JdbcTemplate jdbc() {
+	public TransactionTemplate transaction() {
+		return new TransactionTemplate(transactionManager());
+	}
+
+	@Bean
+	public JdbcTemplate db() {
 		return new JdbcTemplate(dataSource());
 	}
+
+	// TODO change to Quartz and persistent guaranteed job execution
+	@Bean
+	public ScheduledExecutorService executor() {
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+//        scheduler.scheduleAtFixedRate()
+        return scheduler;
+    }
 
 	// TODO add quartz for persistent RESERVED to CALCELLED updates
 	// TODO quartz job must clear all RESERVED money if they are not confiemed within
 	// TODO add code which creates database schema
+
 	@Bean
 	public DataSource dataSource() {
 		MysqlDataSource dataSource = new MysqlDataSource();

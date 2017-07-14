@@ -1,4 +1,4 @@
-package com.example.bank.integration.partner.sql;
+package com.example.bank.integration.partner;
 
 import com.example.bank.model.Account;
 import com.example.bank.model.OverdraftException;
@@ -9,12 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * Service for transferring money between our bank and partners
  * whose database is available for us, or they provide WS-AT web-services
  */
-public class PartnerTransferService {
+public class SQLTransferService {
 
     private JdbcTemplate local;
     private JdbcTemplate partner;
 
-    public PartnerTransferService(JdbcTemplate local, JdbcTemplate partner) {
+    public SQLTransferService(JdbcTemplate local, JdbcTemplate partner) {
         this.local = local;
         this.partner = partner;
     }

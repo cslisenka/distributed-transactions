@@ -3,7 +3,7 @@ package com.example.bank.config;
 import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
-import com.example.bank.integration.partner.sql.PartnerTransferService;
+import com.example.bank.integration.partner.SQLTransferService;
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import org.apache.activemq.ActiveMQXAConnectionFactory;
 import org.springframework.boot.jta.atomikos.AtomikosConnectionFactoryBean;
@@ -22,8 +22,8 @@ import javax.transaction.TransactionManager;
 public class XAConfiguration {
 
     @Bean("xaPartnerTransferService")
-    public PartnerTransferService xaPartnerTransferService() {
-        return new PartnerTransferService(atomikosLocalJdbcTemplate(), atomikosPartnerJdbcTemplate());
+    public SQLTransferService xaPartnerTransferService() {
+        return new SQLTransferService(atomikosLocalJdbcTemplate(), atomikosPartnerJdbcTemplate());
     }
 
     @Bean("xaJmsTemplate")
