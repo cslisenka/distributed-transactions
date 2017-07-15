@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service for transferring money between accounts owned by our bank (within the same DB)
@@ -19,7 +18,6 @@ public class LocalTransferService {
     @Qualifier("localJdbc")
     private JdbcTemplate jdbc;
 
-    @Transactional
     public void doTransfer(String transferId, String from, String to, int amount) throws OverdraftException {
         Account accountFrom = jdbc.queryForObject("select * from account where identifier = ? for update",
                 new AccountRowMapper(), from);

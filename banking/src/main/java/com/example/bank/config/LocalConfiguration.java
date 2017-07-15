@@ -21,11 +21,6 @@ import javax.sql.DataSource;
 @Configuration
 public class LocalConfiguration {
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
     @Bean("localJdbc")
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(localDataSource());

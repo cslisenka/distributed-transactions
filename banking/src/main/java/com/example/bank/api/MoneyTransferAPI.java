@@ -1,5 +1,8 @@
 package com.example.bank.api;
 
+import ch.maxant.generic_jca_adapter.BasicTransactionAssistanceFactory;
+import ch.maxant.generic_jca_adapter.BasicTransactionAssistanceFactoryImpl;
+import ch.maxant.generic_jca_adapter.TransactionAssistant;
 import com.atomikos.icatch.jta.UserTransactionImp;
 import com.example.bank.integration.partner.HTTPTransferService;
 import com.example.bank.model.*;
@@ -7,6 +10,8 @@ import com.example.bank.model.mapper.AccountRowMapper;
 import com.example.bank.model.mapper.MoneyTransferRowMapper;
 import com.example.bank.model.mapper.PartnerMoneyTransferRowMapper;
 import com.example.bank.integration.partner.SQLTransferService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +28,8 @@ import java.util.UUID;
 
 @RestController
 public class MoneyTransferAPI {
+
+    private static final Logger logger = LoggerFactory.getLogger(MoneyTransferAPI.class);
 
     @Autowired
     private ApplicationContext context;
@@ -76,29 +83,62 @@ public class MoneyTransferAPI {
     @PostMapping("/transferMoneyToPartner")
     public void transferMoneyToPartner(@RequestBody Map<String, String> request) throws OverdraftException {
         String transferId = UUID.randomUUID().toString();
+        // As we are writing directly to the partners database, we are responsible for generating partner transfer IDs
+        String partnerTransferId = UUID.randomUUID().toString();
         sqlTransferService.doTransfer(transferId, request.get("from"),
-                request.get("to"), Integer.parseInt(request.get("amount")));
+                partnerTransferId, request.get("to"), Integer.parseInt(request.get("amount")));
     }
 
-    @PostMapping("/transferMoneyToPartnerWS")
-    public void transferMoneyToPartnerWS(@RequestBody Map<String, String> request) throws OverdraftException {
-        String transferId = httpTransferService.reserveMoney(request.get("from"), request.get("to"), Integer.parseInt(request.get("amount")));
-        httpTransferService.confirm(transferId);
-    }
-
-    @PostMapping("/xaTransferMoneyToPartner")
+    @PostMapping("/xaTransferMoneyToPartnerSQL")
     public void xaTransferMoneyToPartner(@RequestBody Map<String, String> request) throws OverdraftException, SystemException, HeuristicRollbackException, HeuristicMixedException, RollbackException, NotSupportedException {
         UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
         tx.begin();
         try {
             String transferId = UUID.randomUUID().toString();
+            String partnerTransferId = UUID.randomUUID().toString();
             xaSQLTransferService.doTransfer(transferId, request.get("from"),
-                    request.get("to"), Integer.parseInt(request.get("amount")));
+                    partnerTransferId, request.get("to"), Integer.parseInt(request.get("amount")));
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
             throw e;
         }
+    }
+
+    @PostMapping("/xaTransferMoneyToPartnerWS")
+    public void xaTransferMoneyToPartnerWS(@RequestBody Map<String, String> request) throws Exception {
+        UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
+        tx.begin();
+        try {
+            String partnerTransferId = null;
+
+            // For demonstration purposes we can shut down partner web-services and show that transaction was rolled back (if our SQL is first)
+            // If our database (next operation) rejects payment - the cancel should be called on web-service
+            // TransactionManager will hold XA transaction on MySQL side and repeat retries to WS-confirm until timeout is passed, then call WS-cancal
+            BasicTransactionAssistanceFactory transferServiceTransactionFactory = new BasicTransactionAssistanceFactoryImpl("xa/transferService"); // TODO how to avoid using JNDI?
+            try (TransactionAssistant transactionAssistant = transferServiceTransactionFactory.getTransactionAssistant()){
+                partnerTransferId = transactionAssistant.executeInActiveTransaction(xaTransactionId -> {
+                    // In case of failure - TransactionManager must call WS-reject
+                    return httpTransferService.reserveMoney(request.get("from"), request.get("to"), Integer.parseInt(request.get("amount")), xaTransactionId);
+                });
+            }
+
+            // For demonstration reasons we can do request with account out of money or non-existing account (if SQL executed after WS-call - in this case TM triggers WS-reject)
+            // Doing local transfer
+            String transferId = UUID.randomUUID().toString();
+            xaSQLTransferService.doTransferLocal(transferId, request.get("from"),
+                    partnerTransferId, request.get("to"), Integer.parseInt(request.get("amount")));
+
+            // TODO add consuming JMS message to XA transaction
+
+            tx.commit();
+        } catch (Exception e) {
+            logger.error("Failed XA (DB+WS) transfer, exception={}", e.getMessage());
+            tx.rollback();
+            throw e;
+        }
+
+        // TODO add web-page for visualizing recovery logs for Atomikos and our WS XA adapter - just print all files we have
     }
 
     @PostMapping("/queuedTransferMoney")
