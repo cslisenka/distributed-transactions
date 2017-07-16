@@ -25,7 +25,7 @@ public class HTTPTransferService {
     public static final String CANCEL = "http://localhost:8090/transfer/{requestId}/cancel";
     public static final String UNFINISHED = "http://localhost:8090/transfer/unfinished";
 
-    // TODO store in DB to make durable
+    // TODO store in DB to make durable - MUST MUST MUST - after restart we are not able to restore any distributed TX
     // TODO when could we clean it?
     // Stores mapping of XA transaction IDs to the transferIDs returned by service
     private ConcurrentHashMap<String, String> xaToTransferIds = new ConcurrentHashMap<>();
@@ -37,10 +37,10 @@ public class HTTPTransferService {
         try {
             String response = restTemplate.postForObject(RESERVE, new ReserveMoneyRequest(from, to, amount), String.class);
             xaToTransferIds.put(xaId, response);
-            logger.info("SUCCESS {} [from='{}' to='{}' amount='{}'] response='{}'", RESERVE, from, to, amount, response);
+            logger.info("SUCCESS {} [from='{}' to='{}' amount='{}'] response='{}', xaId={}", RESERVE, from, to, amount, response, xaId);
             return response;
         } catch (Exception e) {
-            logger.error("ERROR {} [from='{}' to='{}' amount='{}'] exception='{}'", RESERVE, from, to, amount, e.getMessage());
+            logger.error("ERROR {} [from='{}' to='{}' amount='{}'] exception='{}', xaId={}", RESERVE, from, to, amount, e.getMessage(), xaId);
             throw e;
         }
     }
@@ -52,9 +52,9 @@ public class HTTPTransferService {
         try {
             // TODO add monitoring for retrues (collect calls to HashMap, or lis - display to users)
             restTemplate.postForLocation(CONFIRM, null, transferId);
-            logger.info("SUCCESS {} [transferId='{}']", CONFIRM, transferId);
+            logger.info("SUCCESS {} [xaId='{}', transferId='{}']", xaId, CONFIRM, transferId);
         } catch (Exception e) {
-            logger.error("ERROR {} [transferId='{}' exception='{}']", CONFIRM, transferId, e.getMessage());
+            logger.error("ERROR {} [xaId='{}', transferId='{}' exception='{}']", xaId, CONFIRM, transferId, e.getMessage());
             throw e;
         }
     }
@@ -62,12 +62,16 @@ public class HTTPTransferService {
     public void cancel(String xaId) {
         String transferId = xaToTransferIds.get(xaId);
 
-        try {
-            restTemplate.postForLocation(CANCEL, null, transferId);
-            logger.info("SUCCESS {} transferId='{}'", CANCEL, transferId);
-        } catch (Exception e) {
-            logger.error("ERROR {} transferId='{}' exception='{}'", CANCEL, transferId, e.getMessage());
-            throw e;
+        if (transferId != null) {
+            try {
+                restTemplate.postForLocation(CANCEL, null, transferId);
+                logger.info("SUCCESS {} xaId='{}', transferId='{}'", xaId, CANCEL, transferId);
+            } catch (Exception e) {
+                logger.error("ERROR {} xaId='{}', transferId='{}' exception='{}'", xaId, CANCEL, transferId, e.getMessage());
+                throw e;
+            }
+        } else {
+            logger.warn("SKIP {} as no transfer_id received before,  xaId={}", CANCEL, xaId);
         }
     }
 

@@ -95,12 +95,18 @@
 			<version>${jeneric.connector.version}</version>
 		</dependency>
 
-        <!-- just for ResourceException, may be it makes sence to find lightweight jar -->
-        <dependency>
+		<dependency>
+			<groupId>javax.resource</groupId>
+			<artifactId>javax.resource-api</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		<!-- Uncomment if any other Java EE interfaces needed -->
+        <!--dependency>
             <groupId>org.jboss.spec</groupId>
             <artifactId>jboss-javaee-all-7.0</artifactId>
             <version>1.0.3.Final</version>
-        </dependency>
+        </dependency-->
     </dependencies>
 
 	<build>

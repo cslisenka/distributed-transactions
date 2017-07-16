@@ -56,6 +56,7 @@ public class MoneyTransferAPI {
     private Queue requestQueue;
 
     @Autowired
+    @Qualifier("xaJmsTemplate")
     private JmsTemplate jmsTemplate;
 
     @GetMapping
@@ -65,16 +66,19 @@ public class MoneyTransferAPI {
 
     @GetMapping("/transfers")
     public List<MoneyTransfer> getMoneyTransfers() { //@PathVariable String accountIdentifier
+        // TODO integrate with Hazelcast
         return jdbc.query("select * from money_transfer", new MoneyTransferRowMapper());
     }
 
     @GetMapping("/partnerTransfers")
     public List<PartnerMoneyTransfer> getPartnerMoneyTransfers() {
+        // TODO integrate with Hazelcast
         return jdbc.query("select * from partner_money_transfer", new PartnerMoneyTransferRowMapper());
     }
 
     @PostMapping("/transferMoneyLocal")
     public void transferMoney(@RequestBody Map<String, String> request) throws OverdraftException {
+        // TODO integrate with Hazelcast
         String transferId = UUID.randomUUID().toString();
         localTransferService.doTransfer(transferId, request.get("from"),
                 request.get("to"), Integer.parseInt(request.get("amount")));
@@ -82,6 +86,7 @@ public class MoneyTransferAPI {
 
     @PostMapping("/transferMoneyToPartner")
     public void transferMoneyToPartner(@RequestBody Map<String, String> request) throws OverdraftException {
+        // TODO integrate with Hazelcast
         String transferId = UUID.randomUUID().toString();
         // As we are writing directly to the partners database, we are responsible for generating partner transfer IDs
         String partnerTransferId = UUID.randomUUID().toString();
@@ -107,9 +112,20 @@ public class MoneyTransferAPI {
 
     @PostMapping("/xaTransferMoneyToPartnerWS")
     public void xaTransferMoneyToPartnerWS(@RequestBody Map<String, String> request) throws Exception {
-        UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
-        tx.begin();
+        // If transaction is already started higher (in JMS listener) - the code must be commented
+        // If not commented - this method will be executed within nested transaction
+//        UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
+//        tx.begin();
         try {
+
+            // For demonstration reasons we can do request with account out of money or non-existing account (if SQL executed after WS-call - in this case TM triggers WS-reject)
+            // Doing local transfer
+            String transferId = UUID.randomUUID().toString();
+//            xaSQLTransferService.doTransferLocal(transferId, request.get("from"),
+//                    partnerTransferId, request.get("to"), Integer.parseInt(request.get("amount")));
+            xaSQLTransferService.doTransferLocal(transferId, request.get("from"),
+                    "none", request.get("to"), Integer.parseInt(request.get("amount")));
+
             String partnerTransferId = null;
 
             // For demonstration purposes we can shut down partner web-services and show that transaction was rolled back (if our SQL is first)
@@ -123,18 +139,10 @@ public class MoneyTransferAPI {
                 });
             }
 
-            // For demonstration reasons we can do request with account out of money or non-existing account (if SQL executed after WS-call - in this case TM triggers WS-reject)
-            // Doing local transfer
-            String transferId = UUID.randomUUID().toString();
-            xaSQLTransferService.doTransferLocal(transferId, request.get("from"),
-                    partnerTransferId, request.get("to"), Integer.parseInt(request.get("amount")));
-
-            // TODO add consuming JMS message to XA transaction
-
-            tx.commit();
+//            tx.commit();
         } catch (Exception e) {
             logger.error("Failed XA (DB+WS) transfer, exception={}", e.getMessage());
-            tx.rollback();
+//            tx.rollback();
             throw e;
         }
 
@@ -142,21 +150,32 @@ public class MoneyTransferAPI {
     }
 
     @PostMapping("/queuedTransferMoney")
-    public String queueMoneyTransfer(@RequestBody Map<String, String> request) {
-        // TODO store pending transfer in REDIS - in transaction with JMS message
-        // This may be needed for high performance as well if we want to temporary not accept new payments for DB maintenance
-        String transferId = UUID.randomUUID().toString(); // UUID to make request idempotent
+    public String queueMoneyTransfer(@RequestBody Map<String, String> request) throws SystemException, NotSupportedException {
+        // TODO May be inject UserTransactionManager and call getTransaction
+        // TODO in this case we can try enlisting hazelcast resource
+        UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
+        tx.begin();
 
-        jmsTemplate.send(requestQueue, session -> {
-            MapMessage message = session.createMapMessage();
-            message.setString("transfer_id", transferId);
-            message.setString("from", request.get("from"));
-            message.setString("to", request.get("to"));
-            message.setInt("amount", Integer.parseInt(request.get("amount")));
-            return message;
-        });
+        try {
+            // TODO here we need transaction with ActiveMQ + Hazelcast
+            // This may be needed for high performance as well if we want to temporary not accept new payments for DB maintenance
+            String transferId = UUID.randomUUID().toString(); // UUID to make request idempotent
 
-        // TODO return status: success, error
-        return transferId; // We can add payment ID to cache for displaying to user, or just return it to frontend
+            jmsTemplate.send(requestQueue, session -> {
+                MapMessage message = session.createMapMessage();
+                message.setString("transfer_id", transferId);
+                message.setString("from", request.get("from"));
+                message.setString("to", request.get("to"));
+                message.setInt("amount", Integer.parseInt(request.get("amount")));
+                return message;
+            });
+
+            tx.commit();
+            // TODO return status: success, error
+            return transferId; // We can add payment ID to cache for displaying to user, or just return it to frontend
+        } catch (Exception e) {
+            tx.rollback();
+            return "ERROR";
+        }
     }
 }

@@ -7,11 +7,15 @@ import com.atomikos.icatch.config.UserTransactionServiceImp;
 import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
+import com.atomikos.jms.extra.MessageDrivenContainer;
+import com.example.bank.api.MoneyTransferRequestListener;
 import com.example.bank.integration.partner.HTTPTransferService;
 import com.example.bank.integration.partner.SQLTransferService;
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import org.apache.activemq.ActiveMQXAConnectionFactory;
+import org.apache.activemq.RedeliveryPolicy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.jta.atomikos.AtomikosConnectionFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +25,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.client.RestTemplate;
 
+import javax.jms.Queue;
 import javax.sql.XADataSource;
 import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
@@ -65,11 +70,21 @@ public class XAConfiguration {
     @Bean("xaJmsTemplate")
     public JmsTemplate xaJmsTemplate() {
         JmsTemplate template = new JmsTemplate(amqAtomikosXA());
-        template.setSessionTransacted(true); // TODO try this for non-xa template
+        template.setSessionTransacted(true); // TODO probably doesn't make sense for Atomimks, only needed if local tx used
         return template;
     }
 
-    // TODO create JMS listener container under control of atomikos
+    @Autowired
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    public MessageDrivenContainer requestProcessingContainer(
+            MoneyTransferRequestListener listener, @Qualifier("requestQueue") Queue requestQueue) {
+        MessageDrivenContainer container = new MessageDrivenContainer();
+        container.setAtomikosConnectionFactoryBean(amqAtomikosXA());
+        container.setTransactionTimeout(100);
+        container.setDestination(requestQueue);
+        container.setMessageListener(listener);
+        return container;
+    }
 
     @Bean("xaJdbcTemplate")
     public JdbcTemplate atomikosLocalJdbcTemplate() {
@@ -82,8 +97,22 @@ public class XAConfiguration {
     }
 
     @Bean
-    public ActiveMQXAConnectionFactory amqXA() {
-        return new ActiveMQXAConnectionFactory("tcp://localhost:61616");
+    public ActiveMQXAConnectionFactory xaConnectionFactory() {
+        ActiveMQXAConnectionFactory amq = new ActiveMQXAConnectionFactory("tcp://localhost:61616");
+
+        RedeliveryPolicy redeliveryPolicy = new RedeliveryPolicy();
+        redeliveryPolicy.setMaximumRedeliveries(10);
+        redeliveryPolicy.setInitialRedeliveryDelay(500); // 5 seconds redelivery delay
+        redeliveryPolicy.setBackOffMultiplier(2);
+        redeliveryPolicy.setUseExponentialBackOff(true);
+
+        amq.setRedeliveryPolicy(redeliveryPolicy);
+
+        // TODO define policy for specific queues
+//        RedeliveryPolicyMap map = new RedeliveryPolicyMap();
+//        map.setRedeliveryPolicyEntries();
+
+        return amq;
     }
 
     @Bean(initMethod = "init", destroyMethod = "close")
@@ -92,7 +121,7 @@ public class XAConfiguration {
         ds.setUniqueResourceName("activemq");
         ds.setMaxPoolSize(10);
         ds.setMinPoolSize(5);
-        ds.setXaConnectionFactory(amqXA());
+        ds.setXaConnectionFactory(xaConnectionFactory());
         return ds;
     }
 
@@ -158,7 +187,7 @@ public class XAConfiguration {
     @Scope("prototype")
     public UserTransactionImp transaction() throws SystemException {
         UserTransactionImp tx = new UserTransactionImp();
-        tx.setTransactionTimeout(300);
+        tx.setTransactionTimeout(100); // 100 seconds is transaction timeout
         return tx;
     }
 

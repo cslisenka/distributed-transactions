@@ -4,6 +4,7 @@ import com.example.bank.api.MoneyTransferRequestListener;
 import com.example.bank.integration.partner.SQLTransferService;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.RedeliveryPolicy;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -61,26 +62,38 @@ public class LocalConfiguration {
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        return new ActiveMQConnectionFactory("tcp://localhost:61616");
+        ActiveMQConnectionFactory amq = new ActiveMQConnectionFactory("tcp://localhost:61616");
+
+        // If messages were failed to be redelivered, they go to ActiveMQ.DLQ queue
+        // The queue name can be changed (we can define rules routing messages to different queues)
+        RedeliveryPolicy redeliveryPolicy = new RedeliveryPolicy();
+        redeliveryPolicy.setMaximumRedeliveries(10);
+        redeliveryPolicy.setInitialRedeliveryDelay(500); // 5 seconds redelivery delay
+        redeliveryPolicy.setBackOffMultiplier(2);
+        redeliveryPolicy.setUseExponentialBackOff(true);
+
+        amq.setRedeliveryPolicy(redeliveryPolicy);
+        return amq;
     }
 
-    @Bean
+    @Bean("requestQueue")
     public Queue requestQueue() {
         return new ActiveMQQueue("MONEY.TRANSFER.REQUESTS");
     }
 
-    @Bean
+    @Bean("local")
     public JmsTemplate jmsTemplate() {
         return new JmsTemplate(connectionFactory());
     }
 
-    @Autowired
-    @Bean
-    public SimpleMessageListenerContainer requestProcessingContainer(MoneyTransferRequestListener listener) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory());
-        container.setDestination(requestQueue());
-        container.setMessageListener(listener);
-        return container;
-    }
+//    @Autowired
+//    @Bean
+//    public SimpleMessageListenerContainer requestProcessingContainer(MoneyTransferRequestListener listener) {
+//        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+//        container.setConnectionFactory(connectionFactory());
+//        container.setDestination(requestQueue());
+//        container.setMessageListener(listener);
+//        container.setSessionTransacted(true); // Not XA
+//        return container;
+//    }
 }
