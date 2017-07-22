@@ -11,6 +11,10 @@ import com.atomikos.jms.extra.MessageDrivenContainer;
 import com.example.bank.api.MoneyTransferRequestListener;
 import com.example.bank.integration.partner.HTTPTransferService;
 import com.example.bank.integration.partner.SQLTransferService;
+import com.hazelcast.client.HazelcastClient;
+import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.transaction.HazelcastXAResource;
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import org.apache.activemq.ActiveMQXAConnectionFactory;
 import org.apache.activemq.RedeliveryPolicy;
@@ -33,6 +37,7 @@ import java.io.File;
 
 @Configuration
 public class XAConfiguration {
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
@@ -175,21 +180,22 @@ public class XAConfiguration {
 
     @Primary
     @Bean(name = "xaTransactionManager", initMethod = "init", destroyMethod = "close")
-    public TransactionManager xaTransactionManager() {
+    public UserTransactionManager xaTransactionManager() throws SystemException {
         UserTransactionManager txManager = new UserTransactionManager();
+        txManager.setTransactionTimeout(300);
         txManager.setForceShutdown(false);
         return txManager;
     }
-
-    // We must always get new transaction from the spring application context
-    // TODO should we autowire TransactionManager and call getTransaction() instead?
-    @Bean
-    @Scope("prototype")
-    public UserTransactionImp transaction() throws SystemException {
-        UserTransactionImp tx = new UserTransactionImp();
-        tx.setTransactionTimeout(100); // 100 seconds is transaction timeout
-        return tx;
-    }
+//
+//    // We must always get new transaction from the spring application context
+//    // TODO should we autowire TransactionManager and call getTransaction() instead?
+//    @Bean
+//    @Scope("prototype")
+//    public UserTransactionImp transaction() throws SystemException {
+//        UserTransactionImp tx = new UserTransactionImp();
+//        tx.setTransactionTimeout(100); // 100 seconds is transaction timeout
+//        return tx;
+//    }
 
     // TODO why do we need both transactionService and transactionManager?
     // TODO what is the difference between them?

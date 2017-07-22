@@ -1,19 +1,18 @@
 package com.example.bank.config;
 
-import com.example.bank.api.MoneyTransferRequestListener;
 import com.example.bank.integration.partner.SQLTransferService;
+import com.hazelcast.client.HazelcastClient;
+import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.core.HazelcastInstance;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.RedeliveryPolicy;
 import org.apache.activemq.command.ActiveMQQueue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.listener.SimpleMessageListenerContainer;
-import org.springframework.web.client.RestTemplate;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.Queue;
@@ -21,6 +20,14 @@ import javax.sql.DataSource;
 
 @Configuration
 public class LocalConfiguration {
+
+    @Bean
+    public HazelcastInstance hazelcast() {
+        ClientConfig config = new ClientConfig();
+        config.getNetworkConfig().addAddress("localhost");
+
+        return HazelcastClient.newHazelcastClient(config);
+    }
 
     @Bean("localJdbc")
     public JdbcTemplate jdbcTemplate() {

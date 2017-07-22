@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>database-jms-example</artifactId>
+
     <properties>
         <hazelcast.version>3.9-SNAPSHOT</hazelcast.version>
     </properties>

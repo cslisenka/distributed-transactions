@@ -1,7 +1,8 @@
 package com.example.bank.model;
 
-public class PartnerMoneyTransfer {
+import java.io.Serializable;
 
+public class PartnerMoneyTransfer implements Serializable { // For Hazelcast serialization
     private String transferId;
     private String account;
     private String partnerAccount;

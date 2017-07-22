@@ -23,6 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<jeneric.connector.version>2.1.0</jeneric.connector.version>
+		<hazelcast.version>3.9-SNAPSHOT</hazelcast.version>
 	</properties>
 
 	<dependencies>
@@ -107,6 +108,12 @@
             <artifactId>jboss-javaee-all-7.0</artifactId>
             <version>1.0.3.Final</version>
         </dependency-->
+
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-all</artifactId>
+			<version>${hazelcast.version}</version>
+		</dependency>
     </dependencies>
 
 	<build>

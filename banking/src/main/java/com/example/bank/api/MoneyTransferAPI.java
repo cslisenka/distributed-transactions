@@ -4,12 +4,17 @@ import ch.maxant.generic_jca_adapter.BasicTransactionAssistanceFactory;
 import ch.maxant.generic_jca_adapter.BasicTransactionAssistanceFactoryImpl;
 import ch.maxant.generic_jca_adapter.TransactionAssistant;
 import com.atomikos.icatch.jta.UserTransactionImp;
+import com.atomikos.icatch.jta.UserTransactionManager;
 import com.example.bank.integration.partner.HTTPTransferService;
 import com.example.bank.model.*;
 import com.example.bank.model.mapper.AccountRowMapper;
 import com.example.bank.model.mapper.MoneyTransferRowMapper;
 import com.example.bank.model.mapper.PartnerMoneyTransferRowMapper;
 import com.example.bank.integration.partner.SQLTransferService;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.TransactionalMap;
+import com.hazelcast.transaction.HazelcastXAResource;
+import com.hazelcast.transaction.TransactionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +27,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.jms.MapMessage;
 import javax.jms.Queue;
 import javax.transaction.*;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import javax.transaction.xa.XAResource;
+import java.util.*;
 
 @RestController
 public class MoneyTransferAPI {
 
     private static final Logger logger = LoggerFactory.getLogger(MoneyTransferAPI.class);
+    public static final String PENDING_TRANSFERS = "pendingTransfers";
+
+    @Autowired
+    private HazelcastInstance hazelcast;
 
     @Autowired
     private ApplicationContext context;
@@ -59,6 +67,9 @@ public class MoneyTransferAPI {
     @Qualifier("xaJmsTemplate")
     private JmsTemplate jmsTemplate;
 
+    @Autowired
+    private UserTransactionManager txManager;
+
     @GetMapping
     public List<Account> getAccounts() {
         return jdbc.query("select * from account", new AccountRowMapper());
@@ -66,14 +77,17 @@ public class MoneyTransferAPI {
 
     @GetMapping("/transfers")
     public List<MoneyTransfer> getMoneyTransfers() { //@PathVariable String accountIdentifier
-        // TODO integrate with Hazelcast
         return jdbc.query("select * from money_transfer", new MoneyTransferRowMapper());
     }
 
     @GetMapping("/partnerTransfers")
     public List<PartnerMoneyTransfer> getPartnerMoneyTransfers() {
-        // TODO integrate with Hazelcast
         return jdbc.query("select * from partner_money_transfer", new PartnerMoneyTransferRowMapper());
+    }
+
+    @GetMapping("/pendingTransfers")
+    public Collection<Object> getPendingTransfers() {
+        return hazelcast.getMap(PENDING_TRANSFERS).values();
     }
 
     @PostMapping("/transferMoneyLocal")
@@ -96,16 +110,15 @@ public class MoneyTransferAPI {
 
     @PostMapping("/xaTransferMoneyToPartnerSQL")
     public void xaTransferMoneyToPartner(@RequestBody Map<String, String> request) throws OverdraftException, SystemException, HeuristicRollbackException, HeuristicMixedException, RollbackException, NotSupportedException {
-        UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
-        tx.begin();
+        txManager.begin(); // JTA transaction
         try {
             String transferId = UUID.randomUUID().toString();
             String partnerTransferId = UUID.randomUUID().toString();
             xaSQLTransferService.doTransfer(transferId, request.get("from"),
                     partnerTransferId, request.get("to"), Integer.parseInt(request.get("amount")));
-            tx.commit();
+            txManager.commit();
         } catch (Exception e) {
-            tx.rollback();
+            txManager.rollback();
             throw e;
         }
     }
@@ -114,6 +127,7 @@ public class MoneyTransferAPI {
     public void xaTransferMoneyToPartnerWS(@RequestBody Map<String, String> request) throws Exception {
         // If transaction is already started higher (in JMS listener) - the code must be commented
         // If not commented - this method will be executed within nested transaction
+        // TODO change to txManager
 //        UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
 //        tx.begin();
         try {
@@ -151,15 +165,20 @@ public class MoneyTransferAPI {
 
     @PostMapping("/queuedTransferMoney")
     public String queueMoneyTransfer(@RequestBody Map<String, String> request) throws SystemException, NotSupportedException {
-        // TODO May be inject UserTransactionManager and call getTransaction
-        // TODO in this case we can try enlisting hazelcast resource
-        UserTransaction tx = context.getBean(UserTransactionImp.class); // JTA transaction
-        tx.begin();
+        txManager.begin();
+        Transaction transaction = txManager.getTransaction();
 
         try {
-            // TODO here we need transaction with ActiveMQ + Hazelcast
             // This may be needed for high performance as well if we want to temporary not accept new payments for DB maintenance
             String transferId = UUID.randomUUID().toString(); // UUID to make request idempotent
+
+            HazelcastXAResource hazelcastXA = hazelcast.getXAResource();
+            transaction.enlistResource(hazelcastXA);
+
+            TransactionContext hazelcastTx = hazelcastXA.getTransactionContext();
+            TransactionalMap<String, PartnerMoneyTransfer> pendingTransfers = hazelcastTx.getMap(PENDING_TRANSFERS);
+            pendingTransfers.put(transferId, new PartnerMoneyTransfer(transferId, request.get("from"),
+                    request.get("to"), Integer.parseInt(request.get("amount")), PartnerMoneyTransfer.Direction.OUT));
 
             jmsTemplate.send(requestQueue, session -> {
                 MapMessage message = session.createMapMessage();
@@ -170,11 +189,14 @@ public class MoneyTransferAPI {
                 return message;
             });
 
-            tx.commit();
+            // TODO when should we delist resource? Just before commit, or after we completed all operations with him?
+            // TODO check XA specification
+            transaction.delistResource(hazelcastXA, XAResource.TMSUCCESS);
+            transaction.commit();
             // TODO return status: success, error
             return transferId; // We can add payment ID to cache for displaying to user, or just return it to frontend
         } catch (Exception e) {
-            tx.rollback();
+            transaction.rollback();
             return "ERROR";
         }
     }
