@@ -11,7 +11,11 @@
         <module name="axon-example" />
         <module name="axon-example-receiver" />
         <module name="banking" />
+        <module name="banking (1)" />
         <module name="banking-1" />
+        <module name="banking-front-end" />
+        <module name="banking-hazelcast" />
+        <module name="banking-hazelcast-model" />
         <module name="banking-partner" />
         <module name="database-jms-example" />
         <module name="event-sourcing" />
@@ -33,8 +37,12 @@
       <module name="axon-example (1)" target="1.8" />
       <module name="axon-example-receiver" target="1.8" />
       <module name="banking" target="1.8" />
+      <module name="banking (1)" target="1.8" />
       <module name="banking-1" target="1.8" />
       <module name="banking-distributed-tx" target="1.8" />
+      <module name="banking-front-end" target="1.8" />
+      <module name="banking-hazelcast" target="1.8" />
+      <module name="banking-hazelcast-model" target="1.5" />
       <module name="banking-partner" target="1.8" />
       <module name="banking-queue" target="1.8" />
       <module name="database-jms-example" target="1.8" />

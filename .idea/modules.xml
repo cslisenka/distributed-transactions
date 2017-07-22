@@ -8,7 +8,11 @@
       <module fileurl="file://C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\axon-example-receiver\axon-example (1).iml" filepath="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\axon-example-receiver\axon-example (1).iml" />
       <module fileurl="file://$PROJECT_DIR$/axon-example-receiver/axon-example-receiver.iml" filepath="$PROJECT_DIR$/axon-example-receiver/axon-example-receiver.iml" />
       <module fileurl="file://$PROJECT_DIR$/banking/banking.iml" filepath="$PROJECT_DIR$/banking/banking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/banking-front-end/banking (1).iml" filepath="$PROJECT_DIR$/banking-front-end/banking (1).iml" />
       <module fileurl="file://C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking\banking-1.iml" filepath="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking\banking-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/banking-front-end/banking-front-end.iml" filepath="$PROJECT_DIR$/banking-front-end/banking-front-end.iml" />
+      <module fileurl="file://$PROJECT_DIR$/banking-hazelcast/banking-hazelcast.iml" filepath="$PROJECT_DIR$/banking-hazelcast/banking-hazelcast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/banking-hazelcast-model/banking-hazelcast-model.iml" filepath="$PROJECT_DIR$/banking-hazelcast-model/banking-hazelcast-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/banking-partner/banking-partner.iml" filepath="$PROJECT_DIR$/banking-partner/banking-partner.iml" />
       <module fileurl="file://$PROJECT_DIR$/database-jms-example/database-jms-example.iml" filepath="$PROJECT_DIR$/database-jms-example/database-jms-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/distributed-tx.iml" filepath="$PROJECT_DIR$/distributed-tx.iml" />
