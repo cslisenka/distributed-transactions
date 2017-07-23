@@ -1,50 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a4b6f3d-5920-47e2-b929-f88b82b1d5e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/banking-front-end.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrondEndAPI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/src/main/resources/application.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/src/main/resources/jta.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/src/main/resources/static/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast-model/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast-model/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/CachedAccount.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/CachedMoneyTransfer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/HazelcastMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/AccountRowMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/MoneyTransferRowMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-hazelcast/src/main/resources/application.properties" />
+    <list default="true" id="21cd52f2-dd94-4466-a4c9-b6bacd5778c8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/BackendAPI.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/BankBackendMain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/AbstractTransferService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/ExternalService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/LocalService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/PartnerService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/CacheUpdateDTO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/Constants.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/MoneyTransferDTO.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/OverdraftException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/CacheLoader.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-front-end/transaction_logs/tmlog.lck" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/CachedMoneyTransfer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-hazelcast/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/HazelcastMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/AccountRowMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/MoneyTransferRowMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-hazelcast/src/main/resources/application.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/mapper/AccountRowMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/mapper/PartnerMoneyTransferRowMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking-partner/src/main/resources/static/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/BankApplication.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/AlwaysCrashListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/LocalTransferService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/AlwaysCrashListenerConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/LocalConfiguration.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/XAConfiguration.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/hazelcast/HazelcastBankingCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/integration/partner/SQLTransferService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/Account.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/MoneyTransfer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/OverdraftException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/PartnerMoneyTransfer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/mapper/AccountRowMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/mapper/MoneyTransferRowMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/mapper/PartnerMoneyTransferRowMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/src/main/resources/static/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/banking/transaction_log/transaction_manager/log/tmlog.lck" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrondEndAPI.java" afterPath="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndAPI.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking-hazelcast-model/.gitignore" afterPath="$PROJECT_DIR$/banking-backend/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking-hazelcast-model/pom.xml" afterPath="$PROJECT_DIR$/banking-common/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/CachedAccount.java" afterPath="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/AccountDTO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking-hazelcast/.gitignore" afterPath="$PROJECT_DIR$/banking-common/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/Account.java" afterPath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/PartnerAccount.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/docs/mysql_commands.txt" afterPath="$PROJECT_DIR$/banking-backend/docs/mysql_commands.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/pom.xml" afterPath="$PROJECT_DIR$/banking-backend/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/sql/bank.sql" afterPath="$PROJECT_DIR$/banking-backend/sql/bank.sql" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/sql/cleanup.sql" afterPath="$PROJECT_DIR$/banking-backend/sql/cleanup.sql" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/MoneyTransferAPI.java" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferAPI.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/MoneyTransferRequestListener.java" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferRequestListener.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/integration/partner/HTTPTransferService.java" afterPath="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/HTTPService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/banking-backend/src/main/resources/application.properties" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/banking/src/main/resources/jta.properties" afterPath="$PROJECT_DIR$/banking-backend/src/main/resources/jta.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/BankApplication.java" afterPath="$PROJECT_DIR$/banking/src/main/java/com/example/bank/BankApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking-front-end/banking-front-end.iml" afterPath="$PROJECT_DIR$/banking-front-end/banking-front-end.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking-front-end/pom.xml" afterPath="$PROJECT_DIR$/banking-front-end/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndMain.java" afterPath="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/PartnerBankApplication.java" afterPath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/PartnerBankApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/PartnerMoneyTransfer.java" afterPath="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/PartnerMoneyTransfer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/distributed-tx.iml" afterPath="$PROJECT_DIR$/distributed-tx.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
-    <ignored path="$PROJECT_DIR$/atomikos-tcc-example/target/" />
     <ignored path="$PROJECT_DIR$/event-sourcing/target/" />
-    <ignored path="$PROJECT_DIR$/atomikos-example/target/" />
-    <ignored path="$PROJECT_DIR$/database-jms-example/target/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path="$PROJECT_DIR$/spring-statemachine/target/" />
-    <ignored path="$PROJECT_DIR$/narayana-example/target/" />
-    <ignored path="$PROJECT_DIR$/axon-example/target/" />
-    <ignored path="$PROJECT_DIR$/eventuate-example/target/" />
-    <ignored path="$PROJECT_DIR$/axon-example-receiver/target/" />
-    <ignored path="$PROJECT_DIR$/banking-1/target/" />
-    <ignored path="$PROJECT_DIR$/banking-queue/target/" />
-    <ignored path="$PROJECT_DIR$/banking-distributed-tx/target/" />
-    <ignored path="$PROJECT_DIR$/banking/target/" />
-    <ignored path="$PROJECT_DIR$/banking-partner/target/" />
-    <ignored path="$PROJECT_DIR$/banking-front-end/target/" />
     <ignored path="$PROJECT_DIR$/banking-hazelcast/target/" />
-    <ignored path="$PROJECT_DIR$/banking-hazelcast-model/target/" />
+    <ignored path="$PROJECT_DIR$/database-jms-example/target/" />
+    <ignored path="$PROJECT_DIR$/atomikos-tcc-example/target/" />
+    <ignored path="$PROJECT_DIR$/eventuate-example/target/" />
+    <ignored path="$PROJECT_DIR$/narayana-example/target/" />
+    <ignored path="$PROJECT_DIR$/banking-front-end/target/" />
+    <ignored path="$PROJECT_DIR$/spring-statemachine/target/" />
+    <ignored path="$PROJECT_DIR$/axon-example/target/" />
+    <ignored path="$PROJECT_DIR$/atomikos-example/target/" />
+    <ignored path="$PROJECT_DIR$/banking-partner/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/banking-backend/target/" />
+    <ignored path="$PROJECT_DIR$/banking-common/target/" />
+    <ignored path="$PROJECT_DIR$/axon-example-receiver/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,72 +93,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
-  <component name="FavoritesManager">
-    <favorites_list name="distributed-tx" />
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CREATE DATABASE  IF NOT EXISTS \`bank1\` \/\*\!40100 DEFAULT CHARACTER SET utf8 \*\/\;\nUSE \`bank1\`\;\n\-\- MySQL dump 10\.13  Distrib 5\.7\.9\, for Win64 \(x86_64\)\n\-\-\n\-\- Host\: localhost    Database\: bank1\n\-\- \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\n\-\- Server version\	5\.7\.12\-log\n\n\/\*\!40101 SET \@OLD_CHARACTER_SET_CLIENT\=\@\@CHARACTER_SET_CLIENT \*\/\;\n\/\*\!40101 SET \@OLD_CHARACTER_SET_RESULTS\=\@\@CHARACTER_SET_RESULTS \*\/\;\n\/\*\!40101 SET \@OLD_COLLATION_CONNECTION\=\@\@COLLATION_CONNECTION \*\/\;\n\/\*\!40101 SET NAMES utf8 \*\/\;\n\/\*\!40103 SET \@OLD_TIME_ZONE\=\@\@TIME_ZONE \*\/\;\n\/\*\!40103 SET TIME_ZONE\=\'\+00\:00\' \*\/\;\n\/\*\!40014 SET \@OLD_UNIQUE_CHECKS\=\@\@UNIQUE_CHECKS\, UNIQUE_CHECKS\=0 \*\/\;\n\/\*\!40014 SET \@OLD_FOREIGN_KEY_CHECKS\=\@\@FOREIGN_KEY_CHECKS\, FOREIGN_KEY_CHECKS\=0 \*\/\;\n\/\*\!40101 SET \@OLD_SQL_MODE\=\@\@SQL_MODE\, SQL_MODE\=\'NO_AUTO_VALUE_ON_ZERO\' \*\/\;\n\/\*\!40111 SET \@OLD_SQL_NOTES\=\@\@SQL_NOTES\, SQL_NOTES\=0 \*\/\;\n\n\-\-\n\-\- Table structure for table \`account\`\n\-\-\n\nDROP TABLE IF EXISTS \`account\`\;\n\/\*\!40101 SET \@saved_cs_client     \= \@\@character_set_client \*\/\;\n\/\*\!40101 SET character_set_client \= utf8 \*\/\;\nCREATE TABLE \`account\` \(\n  \`identifier\` varchar\(10\) NOT NULL\,\n  \`balance\` int\(11\) NOT NULL\,\n  PRIMARY KEY \(\`identifier\`\)\,\n  UNIQUE KEY \`identifier_UNIQUE\` \(\`identifier\`\)\n\) ENGINE\=InnoDB DEFAULT CHARSET\=utf8\;\n\/\*\!40101 SET character_set_client \= \@saved_cs_client \*\/\;\n\n\-\-\n\-\- Dumping data for table \`account\`\n\-\-\n\nLOCK TABLES \`account\` WRITE\;\n\/\*\!40000 ALTER TABLE \`account\` DISABLE KEYS \*\/\;\nINSERT INTO \`account\` VALUES \(\'acc1\'\,800\)\,\(\'acc2\'\,5200\)\,\(\'acc3\'\,10000\)\;\n\/\*\!40000 ALTER TABLE \`account\` ENABLE KEYS \*\/\;\nUNLOCK TABLES\;\n\n\-\-\n\-\- Table structure for table \`money_transfer\`\n\-\-\n\nDROP TABLE IF EXISTS \`money_transfer\`\;\n\/\*\!40101 SET \@saved_cs_client     \= \@\@character_set_client \*\/\;\n\/\*\!40101 SET character_set_client \= utf8 \*\/\;\nCREATE TABLE \`money_transfer\` \(\n  \`transfer_id\` int\(11\) NOT NULL AUTO_INCREMENT\,\n  \`from_account\` varchar\(10\) NOT NULL\,\n  \`to_account\` varchar\(10\) NOT NULL\,\n  \`amount\` int\(11\) NOT NULL\,\n  PRIMARY KEY \(\`transfer_id\`\)\,\n  UNIQUE KEY \`transfer_id_UNIQUE\` \(\`transfer_id\`\)\,\n  KEY \`from_account_idx\` \(\`from_account\`\)\,\n  KEY \`to_account_idx\` \(\`to_account\`\)\,\n  CONSTRAINT \`from_account\` FOREIGN KEY \(\`from_account\`\) REFERENCES \`account\` \(\`identifier\`\) ON DELETE NO ACTION ON UPDATE NO ACTION\,\n  CONSTRAINT \`to_account\` FOREIGN KEY \(\`to_account\`\) REFERENCES \`account\` \(\`identifier\`\) ON DELETE NO ACTION ON UPDATE NO ACTION\n\) ENGINE\=InnoDB AUTO_INCREMENT\=5 DEFAULT CHARSET\=utf8\;\n\/\*\!40101 SET character_set_client \= \@saved_cs_client \*\/\;\n\n\-\-\n\-\- Dumping data for table \`money_transfer\`\n\-\-\n\nLOCK TABLES \`money_transfer\` WRITE\;\n\/\*\!40000 ALTER TABLE \`money_transfer\` DISABLE KEYS \*\/\;\nINSERT INTO \`money_transfer\` VALUES \(2\,\'acc1\'\,\'acc2\'\,100\)\,\(3\,\'acc1\'\,\'acc2\'\,100\)\,\(4\,\'acc1\'\,\'acc2\'\,100\)\;\n\/\*\!40000 ALTER TABLE \`money_transfer\` ENABLE KEYS \*\/\;\nUNLOCK TABLES\;\n\/\*\!40103 SET TIME_ZONE\=\@OLD_TIME_ZONE \*\/\;\n\n\/\*\!40101 SET SQL_MODE\=\@OLD_SQL_MODE \*\/\;\n\/\*\!40014 SET FOREIGN_KEY_CHECKS\=\@OLD_FOREIGN_KEY_CHECKS \*\/\;\n\/\*\!40014 SET UNIQUE_CHECKS\=\@OLD_UNIQUE_CHECKS \*\/\;\n\/\*\!40101 SET CHARACTER_SET_CLIENT\=\@OLD_CHARACTER_SET_CLIENT \*\/\;\n\/\*\!40101 SET CHARACTER_SET_RESULTS\=\@OLD_CHARACTER_SET_RESULTS \*\/\;\n\/\*\!40101 SET COLLATION_CONNECTION\=\@OLD_COLLATION_CONNECTION \*\/\;\n\/\*\!40111 SET SQL_NOTES\=\@OLD_SQL_NOTES \*\/\;\n\n\-\- Dump completed on 2017\-07\-08 21\:50\:18\n</find>
-      <find>bank1</find>
-      <find>localEntityManagerFactory</find>
-      <find>spring-data</find>
-      <find>JmsTemplate</find>
-      <find>recoveryStatePersistenceDirectory</find>
-      <find>C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking\transaction_log\transaction_manager\log</find>
-      <find>RECOVER T</find>
-      <find>1-a00640d:c09d:4ac454ef:b284c0</find>
-      <find>TMSTART</find>
-      <find>0/rO0ABXVyABNbTGphdmEubGFuZy5PYmplY3Q7kM5YnxBzKWwCAAB4cAAAAAN1cgACW0Ks8xf4BghU4AIAAHhwAAAADTEyNy4wLjAuMS50bTJ1cQB+AAIAAAAeMTI3LjAuMC4xLnRtMTUwMDIxNTUxMjA2NjAwMDAyc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cEFUT00=</find>
-      <find>RECEIVED [transfer_id=1179dfb8-957f-48cc-8823-dfb59dbd8204</find>
-      <find>RECEIVED [transfer_id=f942558f-3baa-47c6-a810-875dd97ea1ed</find>
-      <find>rO0ABXVyABNbTGphdmEubGFuZy5PYmplY3Q7kM5YnxBzKWwCAAB4cAAAAAN1cgACW0Ks8xf4BghU4AIAAHhwAAAADjEyNy4wLjAuMS50bTUwdXEAfgACAAAAHjEyNy4wLjAuMS50bTE1MDAyMTc3MzQzODkwMDAyMHNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHBBVE9N</find>
-      <find>transfer_id=4d1e1384-57cd-4bdc-9280-f945aa82baa9</find>
-      <find>rO0ABXVyABNbTGphdmEubGFuZy5PYmplY3Q7kM5YnxBzKWwCAAB4cAAAAAN1cgACW0Ks8xf4BghU4AIAAHhwAAAADjEyNy4wLjAuMS50bTY4dXEAfgACAAAAHjEyNy4wLjAuMS50bTE1MDAyMTc3Nzg3NzEwMDAyNnNyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHBBVE9N</find>
-      <find>Jms</find>
-      <find>JmsTem</find>
-      <find>RECEIVED</find>
-      <find>Poison</find>
-      <find>checkRe</find>
-      <find>checkRedeliveryLimit</find>
-      <find>RedeliveryPolicy</find>
-      <find>destination</find>
-      <find>RECEIVED ActiveMQTextMessage {commandId = 5</find>
-      <find>amqAtomikosXA</find>
-      <find>AtomikosConnectionFactoryBean</find>
-      <find>hazelcast</find>
-      <find>UserTransaction</find>
-      <find>\</find>
+      <find>localXA</find>
+      <find>account1</find>
+      <find>hazelca</find>
+      <find>london</find>
     </findStrings>
-    <replaceStrings>
-      <replace />
-      <replace>bank2</replace>
-      <replace>partner_bank</replace>
-      <replace>\\</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\axon-example</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -130,57 +125,47 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/integration/partner/HTTPTransferService.java" />
-        <option value="$PROJECT_DIR$/banking/transaction_log/transaction_manager/log/tmlog1.log" />
-        <option value="$PROJECT_DIR$/banking/transaction_log/transaction_manager/log/tmlog0.log" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/AlwaysCrashListener.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/AlwaysCrashListenerConfig.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/MoneyTransferRequestListener.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastDemo.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/hazelcast/DatabaseWithCacheXATransactionExample.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/activemq/TestRedeliveryPolicy.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastTransactionsDemo.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastExample.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastServer.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/ClientExample.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastClient.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastClientExample.java" />
-        <option value="$PROJECT_DIR$/database-jms-example/pom.xml" />
-        <option value="$PROJECT_DIR$/banking/pom.xml" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/hazelcast/HazelcastServer.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/hazelcast/HazelcastBankingCache.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/LocalConfiguration.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/PartnerMoneyTransfer.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/XAConfiguration.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/MoneyTransferAPI.java" />
-        <option value="$PROJECT_DIR$/banking/src/main/java/com/example/bank/BankApplication.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndConfiguration.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/HazelcastBankingCache.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/api/FrondEndAPI.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/config/FrontEndConfiguration.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/BankFrontEndMain.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/resources/jta.properties" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndMain.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/model/MoneyTransfer.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/HazelcastMain.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/Account.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/PartnerMoneyTransfer.java" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/model/Account.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/PartnerMoneyTransferRowMapper.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/CachedAccountRowMapper.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/AccountRowMapper.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/CachedMoneyTransferRowMapper.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/MoneyTransferRowMapper.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast-model/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/pom.xml" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/resources/jta.properties" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/Direction.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/model/PartnerMoneyTransfer.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/HTTPService.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/ITransferService.java" />
         <option value="$PROJECT_DIR$/banking-front-end/pom.xml" />
-        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/AccountAndTransfers.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/HazelcastMain.java" />
-        <option value="$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/CachedAccount.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/cache/MoneyTransferRowMapper.java" />
+        <option value="$PROJECT_DIR$/banking-backend/pom.xml" />
         <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrondEndAPI.java" />
+        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FronTEndAPI.java" />
+        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/cache/CacheLoaderUtil.java" />
+        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/cache/CacheLoader.java" />
+        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndMain.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/CachedAccount.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/CachedMoneyTransfer.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/Constants.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/MoneyTransferRequest.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/AccountDTO.java" />
+        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/CacheLoader.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/CacheUpdateDTO.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/OverdraftException.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/XALocalTransferService.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/XAPartnerTransferService.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/XAExternalTransferService.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/BankBackendMain.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/AbstractTransferService.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/LocalService.java" />
+        <option value="$PROJECT_DIR$/banking-common/pom.xml" />
+        <option value="$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndAPI.java" />
+        <option value="$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/MoneyTransferDTO.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/PartnerService.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/ExternalService.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/BackendAPI.java" />
+        <option value="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/Account.java" />
+        <option value="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/mapper/AccountRowMapper.java" />
+        <option value="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/PartnerAccount.java" />
+        <option value="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/PartnerMoneyTransfer.java" />
+        <option value="$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/PartnerBankApplication.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferAPI.java" />
+        <option value="$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferRequestListener.java" />
       </list>
     </option>
   </component>
@@ -199,18 +184,7 @@
     </option>
   </component>
   <component name="MavenProjectNavigator">
-    <treeState>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="banking" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-      </PATH>
-    </treeState>
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -234,14 +208,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="distributed-tx" />
+              <option name="myItemId" value="distributed-transactions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -249,34 +221,299 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-partner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-partner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-partner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-partner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="distributed-transactions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="banking-backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deprecated" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../transactions-essentials-master" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Work/JAVA tech talks/Distributed transactions/java/distributed-transactions/banking/src/main/java/com/example/bank/config/LocalConfiguration.java" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.bank" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.example.bank.integration.partner.sql" />
-      <recent name="com.example.bank.config" />
-      <recent name="com.example.axonexample.model.mapper" />
-      <recent name="com.example.axonexample.model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions" />
-      <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking-front-end" />
-      <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking\src\main\resources" />
-      <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking\sql" />
-      <recent name="C:\Work\JAVA tech talks\Distributed transactions\java\distributed-transactions\banking-distributed-tx\sql" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -291,87 +528,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.HazelcastMain">
-    <configuration default="false" name="HazelcastBankingCache" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.example.bank.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.example.bank.hazelcast.HazelcastBankingCache" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="banking" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="HazelcastClientExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.slisenko.examples.test.hazelcast.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.slisenko.examples.test.hazelcast.HazelcastClientExample" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="database-jms-example" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="HazelcastMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.example.bank.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.example.bank.HazelcastMain" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="banking-hazelcast" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="BankApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.example.bank.partner.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.example.bank.BankApplication" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="banking" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.BankBackendMain">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -614,7 +771,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="distributed-tx" />
+      <module name="event-sourcing" />
       <envs />
       <method />
     </configuration>
@@ -628,28 +785,6 @@
       <option name="workingDirectory" />
       <option name="isAlternativeJrePathEnabled" value="false" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
@@ -698,12 +833,6 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -726,22 +855,16 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <configuration default="false" name="FrontEndMain" type="Application" factoryName="Application" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.example.bank.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.example.bank.FrontEndMain" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
+    <configuration default="false" name="HazelcastMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bank.HazelcastMain" />
+      <module name="banking-hazelcast" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="FrontEndMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bank.FrontEndMain" />
       <module name="banking-front-end" />
       <envs />
       <method />
@@ -753,56 +876,35 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="AxonExampleReceiver" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.example.bank.partner.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bank.AxonExampleReceiver" />
-      <module name="axon-example-receiver" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="BankApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration default="false" name="PartnerBankApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bank.BankApplication" />
-      <module name="banking" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="PartnerBankApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.example.bank.partner.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bank.partner.PartnerBankApplication" />
       <module name="banking-partner" />
       <envs />
       <method />
     </configuration>
-    <list size="9">
-      <item index="0" class="java.lang.String" itemvalue="Application.FrontEndMain" />
-      <item index="1" class="java.lang.String" itemvalue="Spring Boot.AxonExampleApplication" />
-      <item index="2" class="java.lang.String" itemvalue="Spring Boot.AxonExampleReceiver" />
-      <item index="3" class="java.lang.String" itemvalue="Spring Boot.BankApplication" />
-      <item index="4" class="java.lang.String" itemvalue="Spring Boot.PartnerBankApplication" />
-      <item index="5" class="java.lang.String" itemvalue="Application.HazelcastBankingCache" />
-      <item index="6" class="java.lang.String" itemvalue="Application.HazelcastClientExample" />
-      <item index="7" class="java.lang.String" itemvalue="Application.HazelcastMain" />
-      <item index="8" class="java.lang.String" itemvalue="Application.BankApplication" />
+    <configuration default="false" name="BankBackendMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bank.BankBackendMain" />
+      <module name="banking-backend" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="AxonExampleReceiver" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bank.AxonExampleReceiver" />
+      <module name="axon-example-receiver" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Spring Boot.HazelcastMain" />
+      <item index="1" class="java.lang.String" itemvalue="Spring Boot.FrontEndMain" />
+      <item index="2" class="java.lang.String" itemvalue="Spring Boot.AxonExampleApplication" />
+      <item index="3" class="java.lang.String" itemvalue="Spring Boot.PartnerBankApplication" />
+      <item index="4" class="java.lang.String" itemvalue="Spring Boot.BankBackendMain" />
+      <item index="5" class="java.lang.String" itemvalue="Spring Boot.AxonExampleReceiver" />
     </list>
-    <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.HazelcastMain" />
-        <item index="1" class="java.lang.String" itemvalue="Application.BankApplication" />
-        <item index="2" class="java.lang.String" itemvalue="Application.HazelcastBankingCache" />
-        <item index="3" class="java.lang.String" itemvalue="Application.HazelcastClientExample" />
-      </list>
-    </recent_temporary>
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
@@ -810,53 +912,39 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
     <layout>
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36267072" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776934" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55482817" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5908347" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7823241" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2822458" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7708674" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962063" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24946696" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -869,72 +957,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/axon-example/src/main/java/com/example/bank/api/ComplaintsAPI.java</url>
-          <line>25</line>
-          <properties />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/axon-example/src/main/java/com/example/bank/AxonExampleApplication.java</url>
-          <line>40</line>
+          <url>file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/LocalService.java</url>
+          <line>32</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/axon-example/src/main/java/com/example/bank/AxonExampleApplication.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/axon-example/src/main/java/com/example/bank/AxonExampleApplication.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/axon-example/src/main/java/com/example/bank/AxonExampleApplication.java</url>
-          <line>15</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/axon-example/src/main/java/com/example/bank/AxonExampleApplication.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/axon-example/src/main/java/com/example/bank/AxonExampleApplication.java</url>
-          <line>27</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/integration/partner/HTTPTransferService.java</url>
-          <line>66</line>
-          <properties />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/AlwaysCrashListenerConfig.java</url>
-          <line>55</line>
-          <properties />
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/AlwaysCrashListenerConfig.java</url>
-          <line>67</line>
-          <properties />
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/HazelcastMain.java</url>
-          <line>51</line>
-          <properties />
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="55" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -943,303 +972,31 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/xa/hazelcast/DatabaseWithCacheXATransactionExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/ch/maxant/genericconnector-atomikos-impl/2.1.0/genericconnector-atomikos-impl-2.1.0.jar!/ch/maxant/generic_jca_adapter/AtomikosTransactionAssistantImpl.class">
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/resources/jta.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/ch/maxant/genericconnector-atomikos-api/2.1.0/genericconnector-atomikos-api-2.1.0.jar!/ch/maxant/generic_jca_adapter/BasicTransactionAssistanceFactoryImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="21" column="31" lean-forward="false" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <caret line="9" column="133" lean-forward="false" selection-start-line="9" selection-start-column="133" selection-end-line="9" selection-end-column="133" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/AlwaysCrashListener.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/ch/maxant/genericconnector-impl/2.1.0/genericconnector-impl-2.1.0.jar!/ch/maxant/generic_jca_adapter/AbstractTransactionAssistanceXAResource.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="62" lean-forward="false" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+        <state relative-caret-position="99">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-all/3.9-SNAPSHOT/hazelcast-all-3.9-SNAPSHOT.pom">
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/model/PartnerMoneyTransfer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/LocalTransferService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <marker date="1500022759805" expanded="true" signature="780:833" ph="select * fro... account" />
-            <marker date="1500022759805" expanded="true" signature="932:985" ph="select * fro... account" />
-            <marker date="1500022759805" expanded="true" signature="1163:1214" ph="update accou... " />
-            <marker date="1500022759805" expanded="true" signature="1296:1347" ph="update accou... " />
-            <marker date="1500022759805" expanded="true" signature="1525:1619" ph="insert into money_transfer... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database-jms-example/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/MoneyTransferRequestListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="23" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database-jms-example/src/main/java/com/slisenko/examples/test/hazelcast/HazelcastClientExample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="18" column="78" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="18" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/model/PartnerMoneyTransfer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="84" lean-forward="false" selection-start-line="4" selection-start-column="84" selection-end-line="4" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/BankApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#319#320#0" expanded="false" />
-            <element signature="e#376#377#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/hazelcast/HazelcastBankingCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/XAConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="187" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/api/LocalTransferService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/api/MoneyTransferAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/config/FrontEndConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/resources/jta.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="56" column="42" lean-forward="false" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
-          <folding>
-            <element signature="e#960#961#0" expanded="true" />
-            <element signature="e#1014#1015#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.3.9.RELEASE/spring-webmvc-4.3.9.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="46" column="96" lean-forward="true" selection-start-line="46" selection-start-column="96" selection-end-line="46" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/model/MoneyTransfer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-all/3.9-SNAPSHOT/hazelcast-all-3.9-SNAPSHOT.jar!/com/hazelcast/core/HazelcastInstance.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="34" column="22" lean-forward="false" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/sql/bank.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/PartnerBankApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="158" selection-end-column="5" />
-          <folding>
-            <element signature="e#1427#1428#0" expanded="true" />
-            <element signature="e#1491#1492#0" expanded="true" />
-            <element signature="e#5343#5344#0" expanded="true" />
-            <element signature="e#5402#5403#0" expanded="true" />
-            <element signature="e#5438#5439#0" expanded="true" />
-            <element signature="e#5482#5483#0" expanded="true" />
-            <marker date="1500018685405" expanded="true" signature="1566:1594" ph="select * fro... account" />
-            <marker date="1500018685405" expanded="true" signature="1798:1850" ph="select * fro... london_money_transfer" />
-            <marker date="1500018685405" expanded="true" signature="1932:1967" ph="select * fro... london_money_transfer" />
-            <marker date="1500018685405" expanded="true" signature="2318:2466" ph="INSERT INTO london_money_transfer... " />
-            <marker date="1500018685405" expanded="true" signature="3216:3299" ph="SELECT * FRO... london_money_transfer" />
-            <marker date="1500018685405" expanded="true" signature="3473:3531" ph="SELECT * FRO... london_account" />
-            <marker date="1500018685405" expanded="true" signature="3742:3822" ph="UPDATE londo... " />
-            <marker date="1500018685405" expanded="true" signature="3930:3988" ph="UPDATE londo... " />
-            <marker date="1500018685405" expanded="true" signature="4520:4646" ph="UPDATE londo... " />
-            <marker date="1500018685405" expanded="true" signature="5068:5130" ph="select trans... london_money_transfer" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/1.5.4.RELEASE/spring-boot-autoconfigure-1.5.4.RELEASE.jar!/org/springframework/boot/autoconfigure/SpringBootApplication.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="42" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/config/LocalConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/BankApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking/src/main/java/com/example/bank/api/MoneyTransferAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="85" selection-end-column="5" />
-          <folding>
-            <marker date="1500730522741" expanded="true" signature="2455:2476" ph="select * fro... account" />
-            <marker date="1500730522741" expanded="true" signature="2662:2690" ph="select * fro... money_transfer" />
-            <marker date="1500730522741" expanded="true" signature="2862:2898" ph="select * fro... partner_money_transfer" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/MoneyTransfer.java">
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/model/MoneyTransfer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -1247,10 +1004,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/banking-hazelcast/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="16" />
+        <state relative-caret-position="51">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="42" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/HazelcastMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="52" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1258,84 +1023,104 @@
     <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/MoneyTransferRowMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/CachedAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/model/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="57" lean-forward="false" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/MoneyTransferRowMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/CachedMoneyTransfer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/model/mapper/AccountRowMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast-model/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="39" />
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" column="39" lean-forward="false" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+        <state relative-caret-position="357">
+          <caret line="21" column="42" lean-forward="false" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/CachedMoneyTransfer.java">
+    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/cache/AccountRowMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="16" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/mapper/AccountRowMapper.java">
+    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/cache/MoneyTransferRowMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="22" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/Direction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/MoneyTransferRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="57" lean-forward="false" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/CacheUpdateDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding>
+            <element signature="e#393#394#0" expanded="true" />
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#473#474#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/model/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="26" lean-forward="true" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/OverdraftException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding>
+            <element signature="e#132#133#0" expanded="true" />
+            <element signature="e#189#190#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/CacheLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1500831408586" expanded="true" signature="632:653" ph="SELECT * FRO... account" />
+            <marker date="1500831408586" expanded="true" signature="1040:1069" ph="select * fro... money_transfers" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/AccountDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
@@ -1343,62 +1128,332 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/pom.xml">
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/integration/partner/SQLTransferService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="274">
+          <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/api/deprecated/LocalTransferService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/BankBackendMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+          <folding>
+            <element signature="e#1696#1697#0" expanded="true" />
+            <element signature="e#1753#1754#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/banking-front-end/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="93" column="47" lean-forward="false" selection-start-line="93" selection-start-column="47" selection-end-line="93" selection-end-column="47" />
+        <state relative-caret-position="312">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="42" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast/src/main/java/com/example/bank/HazelcastMain.java">
+    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+        <state relative-caret-position="136">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <marker date="1500744094688" expanded="true" signature="1893:1914" ph="SELECT * FRO... account" />
-            <marker date="1500744094688" expanded="true" signature="1899:1914" ph="select * fro... account" />
-            <marker date="1500744094688" expanded="true" signature="2290:2326" ph="select * fro... partner_money_transfer" />
+            <element signature="class#AccountAndTransfers#0;class#FrontEndAPI#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/AccountAndTransfers.java">
+    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrontEndMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        <state relative-caret-position="136">
+          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/banking-front-end/src/main/java/com/example/bank/FrondEndAPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-          <folding>
-            <element signature="class#AccountAndTransfers#0;class#FrondEndAPI#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banking-hazelcast-model/src/main/java/com/example/bank/model/CachedAccount.java">
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/AbstractTransferService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/src/main/java/com/example/bank/model/MoneyTransferDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="95" column="34" lean-forward="false" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/PartnerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="62" selection-end-column="5" />
           <folding>
-            <element signature="e#481#482#0" expanded="true" />
-            <element signature="e#519#520#0" expanded="true" />
+            <marker date="1500834108820" expanded="true" signature="1242:1295" ph="select * fro... account" />
+            <marker date="1500834108820" expanded="true" signature="1666:1717" ph="UPDATE accou... " />
+            <marker date="1500834108820" expanded="true" signature="1855:1997" ph="insert into money_transfers... " />
+            <marker date="1500834108820" expanded="true" signature="2536:2597" ph="select * fro... london_account" />
+            <marker date="1500834108820" expanded="true" signature="2736:2795" ph="UPDATE londo... " />
+            <marker date="1500834108820" expanded="true" signature="2947:3096" ph="INSERT INTO london_partner_money_transfer... " />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/HTTPService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/ExternalService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-338">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <marker date="1500834427082" expanded="true" signature="2621:2674" ph="select * fro... account" />
+            <marker date="1500834427082" expanded="true" signature="3045:3096" ph="UPDATE accou... " />
+            <marker date="1500834427082" expanded="true" signature="3234:3376" ph="insert into money_transfers... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/service/LocalService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <marker date="1500831461573" expanded="true" signature="999:1052" ph="select * fro... account" />
+            <marker date="1500831461573" expanded="true" signature="1179:1232" ph="select * fro... account" />
+            <marker date="1500831461573" expanded="true" signature="1461:1512" ph="update accou... " />
+            <marker date="1500831461573" expanded="true" signature="1621:1672" ph="update accou... " />
+            <marker date="1500831461573" expanded="true" signature="1911:2061" ph="insert into money_transfer... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/BackendAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="33" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-common/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/mapper/AccountRowMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/mapper/PartnerMoneyTransferRowMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="21" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/PartnerMoneyTransfer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="75" column="1" lean-forward="true" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#929#930#0" expanded="true" />
+            <element signature="e#963#964#0" expanded="true" />
+            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="true" />
+            <element signature="e#1047#1048#0" expanded="true" />
+            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#1106#1107#0" expanded="true" />
+            <element signature="e#1139#1140#0" expanded="true" />
+            <element signature="e#1168#1169#0" expanded="true" />
+            <element signature="e#1213#1214#0" expanded="true" />
+            <element signature="e#1254#1255#0" expanded="true" />
+            <element signature="e#1287#1288#0" expanded="true" />
+            <element signature="e#1318#1319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/model/PartnerAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="26" column="24" lean-forward="false" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-partner/src/main/java/com/example/bank/partner/PartnerBankApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1149">
+          <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5568#5569#0" expanded="true" />
+            <element signature="e#5612#5613#0" expanded="true" />
+            <marker date="1500835033984" expanded="true" signature="1537:1566" ph="select * fro... partner_account" />
+            <marker date="1500835033984" expanded="true" signature="1792:1845" ph="select * fro... partner_money_transfer" />
+            <marker date="1500835033984" expanded="true" signature="1948:1984" ph="select * fro... partner_money_transfer" />
+            <marker date="1500835033984" expanded="true" signature="2356:2505" ph="INSERT INTO partner_money_transfer... " />
+            <marker date="1500835033984" expanded="true" signature="3214:3298" ph="SELECT * FRO... partner_money_transfer" />
+            <marker date="1500835033984" expanded="true" signature="3514:3573" ph="SELECT * FRO... partner_account" />
+            <marker date="1500835033984" expanded="true" signature="3806:3887" ph="UPDATE londo... " />
+            <marker date="1500835033984" expanded="true" signature="3995:4054" ph="UPDATE partn... " />
+            <marker date="1500835033984" expanded="true" signature="4600:4727" ph="UPDATE partn... " />
+            <marker date="1500835033984" expanded="true" signature="5149:5212" ph="select trans... partner_money_transfer" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/banking-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferRequestListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>banking-front-end</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

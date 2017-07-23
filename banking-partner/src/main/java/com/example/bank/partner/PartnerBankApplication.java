@@ -1,10 +1,8 @@
 package com.example.bank.partner;
 
-import com.example.bank.partner.model.Account;
 import com.example.bank.partner.model.OverdraftException;
+import com.example.bank.partner.model.PartnerAccount;
 import com.example.bank.partner.model.PartnerMoneyTransfer;
-import com.example.bank.partner.model.mapper.AccountRowMapper;
-import com.example.bank.partner.model.mapper.PartnerMoneyTransferRowMapper;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,12 +15,14 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+// TODO rename to external bank application and make additional database
 @RestController
 @Configuration
 @SpringBootApplication
@@ -37,16 +37,16 @@ public class PartnerBankApplication {
 	}
 
 	@GetMapping
-	public List<Account> getAccounts() {
-		return db().query("select * from london_account", new AccountRowMapper());
+	public List<PartnerAccount> getAccounts() {
+		return db().query("select * from partner_account", new PartnerAccount.PartnerAccountRowMapper());
 	}
 
 	@GetMapping("/transfer/status/{status}")
 	public List<PartnerMoneyTransfer> getMoneyTransfers(@PathVariable String status) {
 		if (status != null) {
-			return db().query("select * from london_money_transfer WHERE status = ?", new PartnerMoneyTransferRowMapper(), status);
+			return db().query("select * from partner_money_transfer WHERE status = ?", new PartnerMoneyTransfer.PartnerMoneyTransferRowMapper(), status);
 		} else {
-			return db().query("select * from london_money_transfer", new PartnerMoneyTransferRowMapper());
+			return db().query("select * from partner_money_transfer", new PartnerMoneyTransfer.PartnerMoneyTransferRowMapper());
 		}
 	}
 
@@ -56,16 +56,17 @@ public class PartnerBankApplication {
 		String transferId = UUID.randomUUID().toString();
 
 		transaction().execute(tx -> {
-            int rows = db().update("INSERT INTO london_money_transfer (transfer_id, account, external_account, " +
-                "amount, direction, status) VALUES (?, ?, ?, ?, ?, ?)",
+            int rows = db().update("INSERT INTO partner_money_transfer (transfer_id, account, external_account, " +
+                "amount, status, date_time) VALUES (?, ?, ?, ?, ?, ?)",
                 transferId, request.get("to"), request.get("from"),
-                Integer.parseInt(request.get("amount")), "IN", RESERVED); // TODO add reservation time
+                Integer.parseInt(request.get("amount")), RESERVED, new Date());
 
-            boolean isSuccess = rows == 1;
-            if (!isSuccess) {
+            if (rows != 1) {
                 tx.setRollbackOnly();
+                return false;
             }
-            return isSuccess;
+
+            return true;
         });
 
 		// TODO run background process to cancel all transactions which older then 30 minutes
@@ -77,19 +78,19 @@ public class PartnerBankApplication {
     public void confirmTransfer(@PathVariable String transferId) throws OverdraftException {
 		transaction().execute(tx -> {
             // Search and lock money transfer
-            PartnerMoneyTransfer transfer = db().queryForObject("SELECT * FROM london_money_transfer WHERE transfer_id = ? AND status = ? FOR UPDATE",
-                    new PartnerMoneyTransferRowMapper(), transferId, RESERVED);
+            PartnerMoneyTransfer transfer = db().queryForObject("SELECT * FROM partner_money_transfer WHERE transfer_id = ? AND status = ? FOR UPDATE",
+                    new PartnerMoneyTransfer.PartnerMoneyTransferRowMapper(), transferId, RESERVED);
 
-            // Search and lock account
-            Account account = db().queryForObject("SELECT * FROM london_account WHERE identifier=? FOR UPDATE",
-                    new AccountRowMapper(), transfer.getAccount());
+            // Search and lock partnerAccount
+            PartnerAccount partnerAccount = db().queryForObject("SELECT * FROM partner_account WHERE identifier=? FOR UPDATE",
+                    new PartnerAccount.PartnerAccountRowMapper(), transfer.getAccount());
 
             // No validation needed for incoming transfer, needed for outgoing transfer
-            int transferUpdatedRows = db().update("UPDATE london_money_transfer SET status = ? WHERE transfer_id = ? AND status = ?",
+            int transferUpdatedRows = db().update("UPDATE partner_money_transfer SET status = ? WHERE transfer_id = ? AND status = ?",
                     CONFIRMED, transferId, RESERVED);
 
-            int accountUpdatedRows = db().update("UPDATE london_account SET balance = ? WHERE identifier = ?",
-                    account.getBalance() + transfer.getAmount(), account.getIdentifier());
+            int accountUpdatedRows = db().update("UPDATE partner_account SET balance = ? WHERE identifier = ?",
+                    partnerAccount.getBalance() + transfer.getAmount(), partnerAccount.getIdentifier());
 
             boolean isSuccess = (transferUpdatedRows == 1) && (accountUpdatedRows == 1);
             if (!isSuccess) {
@@ -102,7 +103,7 @@ public class PartnerBankApplication {
     @PostMapping("/transfer/{transferId}/cancel")
     public void cancelTransfer(@PathVariable String transferId) throws OverdraftException {
 		transaction().execute(tx -> {
-            int updatedRows = db().update("UPDATE london_money_transfer SET status = ?, cancellation_reason = ? " +
+            int updatedRows = db().update("UPDATE partner_money_transfer SET status = ?, cancellation_reason = ? " +
                 "WHERE transfer_id = ? AND status = ?",
                     CANCELLED, "cancelled by web-service call", transferId, RESERVED);
 
@@ -117,7 +118,7 @@ public class PartnerBankApplication {
     // Needed by XA resource
     @GetMapping("/transfer/unfinished")
     public List<String> getUnfinishedTransfers() {
-		return db().queryForList("select transfer_id from london_money_transfer WHERE status = ?", String.class, RESERVED);
+		return db().queryForList("select transfer_id from partner_money_transfer WHERE status = ?", String.class, RESERVED);
 	}
 
     @Bean
@@ -125,6 +126,7 @@ public class PartnerBankApplication {
 		return new DataSourceTransactionManager(dataSource());
 	}
 
+	// For manual management of local transactions
 	@Bean
 	public TransactionTemplate transaction() {
 		return new TransactionTemplate(transactionManager());

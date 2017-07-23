@@ -18,10 +18,9 @@
         <module>axon-example</module>
         <module>axon-example-receiver</module>
         <module>eventuate-example</module>
-        <module>banking</module>
+        <module>banking-backend</module>
         <module>banking-front-end</module>
-        <module>banking-hazelcast</module>
-        <module>banking-hazelcast-model</module>
+        <module>banking-common</module>
         <module>banking-partner</module>
     </modules>
 

@@ -1,24 +1,30 @@
 package com.example.bank.partner.model;
 
+import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+
 public class PartnerMoneyTransfer {
 
     private String transferId;
     private String account;
-    private String partnerAccount;
+    private String to;
     private int amount;
-    private Direction direction;
     private Status status;
     private String cancellationReason;
+    private Date dateTime;
 
-    public PartnerMoneyTransfer(String transferId, String account, String partnerAccount,
-                                int amount, Direction direction, Status status, String cancellationReason) {
+    public PartnerMoneyTransfer(String transferId, String account, String externalAccount,
+                                int amount, Status status, String cancellationReason, Date dateTime) {
         this.transferId = transferId;
         this.account = account;
-        this.partnerAccount = partnerAccount;
+        this.to = externalAccount;
         this.amount = amount;
-        this.direction = direction;
         this.status = status;
         this.cancellationReason = cancellationReason;
+        this.dateTime = dateTime;
     }
 
     public String getTransferId() {
@@ -29,16 +35,12 @@ public class PartnerMoneyTransfer {
         return account;
     }
 
-    public String getPartnerAccount() {
-        return partnerAccount;
+    public String getTo() {
+        return to;
     }
 
     public int getAmount() {
         return amount;
-    }
-
-    public Direction getDirection() {
-        return direction;
     }
 
     public Status getStatus() {
@@ -49,11 +51,26 @@ public class PartnerMoneyTransfer {
         return cancellationReason;
     }
 
-    public enum Direction {
-        IN, OUT
+    public Date getDateTime() {
+        return dateTime;
     }
 
     public enum Status {
         RESERVED, CONFIRMED, CANCELLED
+    }
+
+    public static class PartnerMoneyTransferRowMapper implements RowMapper<PartnerMoneyTransfer> {
+
+        @Override
+        public PartnerMoneyTransfer mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new PartnerMoneyTransfer(
+                    rs.getString("transfer_id"),
+                    rs.getString("account"),
+                    rs.getString("external_account"),
+                    rs.getInt("amount"),
+                    PartnerMoneyTransfer.Status.valueOf(rs.getString("status")),
+                    rs.getString("cancellation_reason"),
+                    rs.getDate("date_time"));
+        }
     }
 }
