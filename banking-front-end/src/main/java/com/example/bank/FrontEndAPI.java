@@ -24,6 +24,7 @@ import javax.transaction.SystemException;
 import javax.transaction.Transaction;
 import javax.transaction.xa.XAResource;
 import java.util.*;
+import java.util.function.Consumer;
 
 @RestController
 public class FrontEndAPI implements MessageListener {
@@ -46,9 +47,9 @@ public class FrontEndAPI implements MessageListener {
 
         Map<String, AccountDTO> accounts = cache.getMap(Constants.HAZELCAST_ACCOUNTS);
         for (AccountDTO account : accounts.values()) {
-            Map<String, MoneyTransferDTO> moneyTransfers = cache.getMap(Constants.HAZELCAST_TRANSFERS + "_" + account.getIdentifier());
-            Map<String, MoneyTransferDTO> pendingMoneyTransfers = cache.getMap(Constants.HAZELCAST_PENDING_TRANSFERS + "_" + account.getIdentifier());
-            response.add(new AccountAndTransfers(account, moneyTransfers.values(), pendingMoneyTransfers.values()));
+            Map<String, MoneyTransferDTO> transfers = cache.getMap(Constants.HAZELCAST_TRANSFERS + "_" + account.getIdentifier());
+            Map<String, MoneyTransferDTO> pendingTransfers = cache.getMap(Constants.HAZELCAST_PENDING_TRANSFERS + "_" + account.getIdentifier());
+            response.add(new AccountAndTransfers(account, transfers.values(), pendingTransfers.values()));
         }
 
         return response;
@@ -57,7 +58,6 @@ public class FrontEndAPI implements MessageListener {
     @PostMapping("/transfer")
     public String queueMoneyTransfer(@RequestBody MoneyTransferDTO request) throws SystemException, NotSupportedException {
         tm.begin();
-        Transaction tx = tm.getTransaction();
         try {
             // This may be needed for high performance as well if we want to temporary not accept new payments for DB maintenance
             String transferId = UUID.randomUUID().toString(); // UUID to make request idempotent
@@ -67,66 +67,94 @@ public class FrontEndAPI implements MessageListener {
             // Send JMS message
             jms.send(moneyTransferQueue, session -> {
                 MapMessage message = session.createMapMessage();
-                request.copyTo(message);
+                request.to(message);
                 return message;
             });
 
             // Update cache
-            HazelcastXAResource xaCache = cache.getXAResource();
-            tx.enlistResource(xaCache);
-            TransactionContext cacheTx = xaCache.getTransactionContext();
-            TransactionalMap<String, AccountDTO> accountMap = cacheTx.getMap(Constants.HAZELCAST_ACCOUNTS);
-            TransactionalMap<String, MoneyTransferDTO> pendingTransfersMap = cacheTx.getMap(Constants.HAZELCAST_PENDING_TRANSFERS + "_" + request.getFrom());
+            doInTransaction(cacheTx -> {
+                TransactionalMap<String, AccountDTO> accounts = cacheTx.getMap(Constants.HAZELCAST_ACCOUNTS);
+                cacheTx.getMap(Constants.HAZELCAST_PENDING_TRANSFERS + "_" + request.getFrom())
+                    .put(transferId, request);
 
-            AccountDTO account = accountMap.getForUpdate(request.getFrom());
-            if (account != null) {
-                account.setBalance(account.getBalance() - request.getAmount()); // TODO add overdraft check if we get negative balance here
-                accountMap.replace(account.getIdentifier(), account);
-                pendingTransfersMap.put(transferId, request);
-            } else {
-                throw new RuntimeException("Non-existing account " + request.getFrom());
-            }
+                AccountDTO account = accounts.getForUpdate(request.getFrom());
+                if (account != null) {
+                    account.setBalance(account.getBalance() - request.getAmount()); // TODO add overdraft check if we get negative balance here
+                    accounts.replace(account.getIdentifier(), account);
+                } else {
+                    throw new RuntimeException("Non-existing account " + request.getFrom());
+                }
+            });
 
-            // TODO when should we delist resource? Just before commit, or after we completed all operations with him?
-            // TODO check XA specification
-            tx.delistResource(xaCache, XAResource.TMSUCCESS);
-            tx.commit();
+            tm.commit();
             return transferId;
         } catch (Exception e) {
-            tx.rollback();
+            tm.rollback();
             return e.getMessage();
         }
     }
 
+    // Should be already in XA transaction
     @Override
     public void onMessage(Message message) {
-        // TODO handle message and update cache
-        System.out.println(message);
+        // TODO handle if we had money  transfer error
+        MapMessage map = (MapMessage) message;
+        try {
+            AccountDTO account = AccountDTO.from(map);
+            MoneyTransferDTO transfer = MoneyTransferDTO.from(map);
+
+            doInTransaction(cacheTx -> {
+                // Update account
+                cacheTx.getMap(Constants.HAZELCAST_ACCOUNTS).replace(account.getIdentifier(), account);
+                // Remove pending transfer
+                cacheTx.getMap(Constants.HAZELCAST_PENDING_TRANSFERS + "_" + account.getIdentifier()).remove(transfer.getTransferId());
+                // Add permanent transfer
+                // TODO handle if we got error for transfer
+                cacheTx.getMap(Constants.HAZELCAST_TRANSFERS + "_" + account.getIdentifier()).put(transfer.getTransferId(), transfer);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e); // Causing transaction rollback
+        }
+    }
+
+    private void doInTransaction(Consumer<TransactionContext> action) throws Exception {
+        Transaction tx = tm.getTransaction();
+        HazelcastXAResource xaCacheResource = cache.getXAResource();
+        tx.enlistResource(xaCacheResource);
+        TransactionContext cacheTx = xaCacheResource.getTransactionContext();
+
+        // Executing business logic
+        action.accept(cacheTx);
+
+        // TODO when should we delist resource? Just before commit, or after we completed all operations with him?
+        // TODO check XA specification
+        tx.delistResource(xaCacheResource, XAResource.TMSUCCESS);
     }
 
     static public class AccountAndTransfers {
 
         private AccountDTO account;
-        private Collection<MoneyTransferDTO> completedTransfers;
-        private Collection<MoneyTransferDTO> pendingTransfers;
+        private Collection<MoneyTransferDTO> completed;
+        private Collection<MoneyTransferDTO> pending;
 
-        public AccountAndTransfers(AccountDTO account, Collection<MoneyTransferDTO> completedTransfers,
-                                   Collection<MoneyTransferDTO> pendingTransfers) {
+        public AccountAndTransfers(AccountDTO account, Collection<MoneyTransferDTO> completed,
+                                   Collection<MoneyTransferDTO> pending) {
             this.account = account;
-            this.completedTransfers = completedTransfers;
-            this.pendingTransfers = pendingTransfers;
+            this.completed = completed;
+            this.pending = pending;
         }
 
         public AccountDTO getAccount() {
             return account;
         }
 
-        public Collection<MoneyTransferDTO> getCompletedTransfers() {
-            return completedTransfers;
+        public Collection<MoneyTransferDTO> getCompleted() {
+            return completed;
         }
 
-        public Collection<MoneyTransferDTO> getPendingTransfers() {
-            return pendingTransfers;
+        public Collection<MoneyTransferDTO> getPending() {
+            return pending;
         }
     }
 }

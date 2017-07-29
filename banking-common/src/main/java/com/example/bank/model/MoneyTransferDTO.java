@@ -9,7 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class MoneyTransferDTO implements Serializable { // For Hazelcast serialization
+public class MoneyTransferDTO implements Serializable {
+
+    public static final String TRANSFER_ID = "transfer_id";
+    public static final String ACCOUNT_FROM = "account_from";
+    public static final String ACCOUNT_TO = "account_to";
+    public static final String BANK_TO = "bank_to";
+    public static final String AMOUNT = "amount";
+    public static final String DATE_TIME = "date_time";
 
     private String transferId;
     private String from;
@@ -18,11 +25,11 @@ public class MoneyTransferDTO implements Serializable { // For Hazelcast seriali
     private int amount;
     private Date dateTime;
 
-    public MoneyTransferDTO(String transferId, String from, String to, String toBank, int amount, Date dateTime) {
+    public MoneyTransferDTO(String transferId, String from, String to, String bankTo, int amount, Date dateTime) {
         this.transferId = transferId;
         this.from = from;
         this.to = to;
-        this.toBank = toBank;
+        this.toBank = bankTo;
         this.amount = amount;
         this.dateTime = dateTime;
     }
@@ -83,33 +90,32 @@ public class MoneyTransferDTO implements Serializable { // For Hazelcast seriali
         @Override
         public MoneyTransferDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new MoneyTransferDTO(
-                    rs.getString("transfer_id"),
-                    rs.getString("account_from"),
-                    rs.getString("account_to"),
-                    rs.getString("bank_to"),
-                    rs.getInt("amount"),
-                    rs.getDate("date_time"));
+                    rs.getString(TRANSFER_ID),
+                    rs.getString(ACCOUNT_FROM),
+                    rs.getString(ACCOUNT_TO),
+                    rs.getString(BANK_TO),
+                    rs.getInt(AMOUNT),
+                    rs.getDate(DATE_TIME));
         }
     }
 
-    public void copyTo(MapMessage msg) throws JMSException {
-        msg.setString("transfer_id", transferId);
-        msg.setString("account_from", from);
-        msg.setString("account_to", to);
-        msg.setString("bank_to", toBank);
-        msg.setInt("amount", amount);
-        msg.setLong("date_time", dateTime.getTime());
+    public void to(MapMessage msg) throws JMSException {
+        msg.setString(TRANSFER_ID, transferId);
+        msg.setString(ACCOUNT_FROM, from);
+        msg.setString(ACCOUNT_TO, to);
+        msg.setString(BANK_TO, toBank);
+        msg.setInt(AMOUNT, amount);
+        msg.setLong(DATE_TIME, dateTime.getTime());
     }
 
-    public static MoneyTransferDTO createFrom(MapMessage msg) throws JMSException {
+    public static MoneyTransferDTO from(MapMessage msg) throws JMSException {
         MoneyTransferDTO result = new MoneyTransferDTO();
-        result.setTransferId(msg.getString("transfer_id"));
-        result.setFrom(msg.getString("account_from"));
-        result.setTo(msg.getString("account_to"));
-        result.setToBank(msg.getString("bank_to"));
-        result.setToBank(msg.getString("bank_to"));
-        result.setAmount(msg.getInt("amount"));
-        result.setDateTime(new Date(msg.getLong("date_time")));
+        result.setTransferId(msg.getString(TRANSFER_ID));
+        result.setFrom(msg.getString(ACCOUNT_FROM));
+        result.setTo(msg.getString(ACCOUNT_TO));
+        result.setToBank(msg.getString(BANK_TO));
+        result.setAmount(msg.getInt(AMOUNT));
+        result.setDateTime(new Date(msg.getLong(DATE_TIME)));
         return result;
     }
 }

@@ -8,13 +8,11 @@ import com.atomikos.icatch.jta.UserTransactionManager;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.atomikos.jms.extra.MessageDrivenContainer;
 import com.example.bank.model.Constants;
-import com.example.bank.service.AbstractTransferService;
 import com.example.bank.service.HTTPService;
 import com.mysql.jdbc.jdbc2.optional.MysqlXADataSource;
 import org.apache.activemq.ActiveMQXAConnectionFactory;
 import org.apache.activemq.RedeliveryPolicy;
 import org.apache.activemq.command.ActiveMQQueue;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,35 +28,27 @@ import javax.jms.Queue;
 import javax.sql.XADataSource;
 import javax.transaction.SystemException;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
 @SpringBootApplication
-public class BankBackendMain {
+public class BackEndMain {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BankBackendMain.class, args);
+		SpringApplication.run(BackEndMain.class, args);
 	}
 
 	// TODO create performance tests for XA and similar non-XA actions, use JMeter + Dynatrace
 	// TODO calculate overhead of XA
-	// TODO add cleanup task (if we passed flag as input parameter)
-	// TODO cleanup should restore database into initial state + clear all TransactionManager logs
-
-	@Bean
-	public InitializingBean init() {
-		return () -> System.out.println("TODO Clean atomikos logs");
-	}
+	// TODO add cleanup task for atomikos logs
 
 	@Bean("moneyTransferQueue")
 	public Queue requestQueue() {
-		return new ActiveMQQueue(Constants.TRANSFER_QUEUE);
+		return new ActiveMQQueue(Constants.QUEUE_TRANSFER);
 	}
 
 	@Bean("cacheUpdateQueue")
 	public Queue cacheUpdateQueue() {
-		return new ActiveMQQueue(Constants.CACHE_UPDATE_QUEUE);
+		return new ActiveMQQueue(Constants.QUEUE_CACHE_UPDATE);
 	}
 
 	@Bean

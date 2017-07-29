@@ -26,14 +26,14 @@ import java.util.concurrent.ScheduledExecutorService;
 @RestController
 @Configuration
 @SpringBootApplication
-public class PartnerBankApplication {
+public class PartnerMain {
 
     public static final String CONFIRMED = "CONFIRMED";
     public static final String RESERVED = "RESERVED";
     public static final String CANCELLED = "CANCELLED";
 
 	public static void main(String[] args) {
-		SpringApplication.run(PartnerBankApplication.class, args);
+		SpringApplication.run(PartnerMain.class, args);
 	}
 
 	@GetMapping

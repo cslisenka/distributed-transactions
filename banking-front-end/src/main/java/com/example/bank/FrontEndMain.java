@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.jta.atomikos.AtomikosConnectionFactoryBean;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -29,18 +28,17 @@ import javax.transaction.SystemException;
 public class FrontEndMain {
 
 	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(FrontEndMain.class, args);
-		context.getBean(CacheLoader.class).loadDataToCache();
+		SpringApplication.run(FrontEndMain.class, args);
 	}
 
 	@Bean("moneyTransferQueue")
 	public Queue moneyTransferQueue() {
-		return new ActiveMQQueue(Constants.TRANSFER_QUEUE);
+		return new ActiveMQQueue(Constants.QUEUE_TRANSFER);
 	}
 
     @Bean("cacheUpdateQueue")
     public Queue cacheUpdateQueue() {
-        return new ActiveMQQueue(Constants.CACHE_UPDATE_QUEUE);
+        return new ActiveMQQueue(Constants.QUEUE_CACHE_UPDATE);
     }
 
 	@Primary // To override default spring boot transaction manager

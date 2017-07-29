@@ -2,8 +2,8 @@ package com.example.bank.model;
 
 public interface Constants {
 
-    String TRANSFER_QUEUE = "MONEY.TRANSFER.QUEUE";
-    String CACHE_UPDATE_QUEUE = "CACHE.UPDATE.QUEUE";
+    String QUEUE_TRANSFER = "MONEY.TRANSFER.QUEUE";
+    String QUEUE_CACHE_UPDATE = "CACHE.UPDATE.QUEUE";
 
     String HAZELCAST_ACCOUNTS = "account";
     String HAZELCAST_TRANSFERS = "transfer";

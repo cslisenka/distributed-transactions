@@ -1,0 +1,22 @@
+POST http://localhost:9090/transfer
+
+{
+	"from" : "acc1",
+	"to" : "acc2",
+	"amount" : 1,
+	"toBank" : "local"
+}
+
+{
+	"from" : "acc1",
+	"to" : "p_acc1",
+	"amount" : 100,
+	"toBank" : "partner"
+}
+
+{
+	"from" : "acc1",
+	"to" : "p_acc1",
+	"amount" : 1000,
+	"toBank" : "external"
+}
