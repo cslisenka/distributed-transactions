@@ -29,9 +29,7 @@ public class HTTPService {
     // TODO when could we clean it?
     // Stores mapping of XA transaction IDs to the transferIDs returned by service
     private ConcurrentHashMap<String, String> xaToTransferIds = new ConcurrentHashMap<>();
-
-    @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     public String reserveMoney(String from, String to, int amount, String xaId) {
         try {

@@ -8,6 +8,8 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.TransactionalMap;
 import com.hazelcast.transaction.HazelcastXAResource;
 import com.hazelcast.transaction.TransactionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,8 @@ import java.util.function.Consumer;
 @RestController
 public class FrontEndAPI implements MessageListener {
 
+    private static final Logger logger = LoggerFactory.getLogger(CacheLoader.class);
+
     @Autowired
     private HazelcastInstance cache;
 
@@ -42,14 +46,14 @@ public class FrontEndAPI implements MessageListener {
     private UserTransactionManager tm;
 
     @GetMapping("/account")
-    public List<AccountAndTransfers> getAllAccounts() {
-        List<AccountAndTransfers> response = new ArrayList<>();
+    public List<AccountAndTransfersDTO> getAllAccounts() {
+        List<AccountAndTransfersDTO> response = new ArrayList<>();
 
         Map<String, AccountDTO> accounts = cache.getMap(Constants.HAZELCAST_ACCOUNTS);
         for (AccountDTO account : accounts.values()) {
             Map<String, MoneyTransferDTO> transfers = cache.getMap(Constants.HAZELCAST_TRANSFERS + "_" + account.getIdentifier());
             Map<String, MoneyTransferDTO> pendingTransfers = cache.getMap(Constants.HAZELCAST_PENDING_TRANSFERS + "_" + account.getIdentifier());
-            response.add(new AccountAndTransfers(account, transfers.values(), pendingTransfers.values()));
+            response.add(new AccountAndTransfersDTO(account, transfers.values(), pendingTransfers.values()));
         }
 
         return response;
@@ -65,11 +69,9 @@ public class FrontEndAPI implements MessageListener {
             request.setDateTime(new Date());
 
             // Send JMS message
-            jms.send(moneyTransferQueue, session -> {
-                MapMessage message = session.createMapMessage();
-                request.to(message);
-                return message;
-            });
+            jms.send(moneyTransferQueue,
+                session -> request.to(session.createMapMessage())
+            );
 
             // Update cache
             doInTransaction(cacheTx -> {
@@ -86,10 +88,13 @@ public class FrontEndAPI implements MessageListener {
                 }
             });
 
+            logger.info("Sending {} to queue", request);
+
             tm.commit();
             return transferId;
         } catch (Exception e) {
             tm.rollback();
+            logger.error("Error sending {} ({})", request, e.getMessage());
             return e.getMessage();
         }
     }
@@ -103,6 +108,7 @@ public class FrontEndAPI implements MessageListener {
             AccountDTO account = AccountDTO.from(map);
             MoneyTransferDTO transfer = MoneyTransferDTO.from(map);
 
+            // Update cache with new account and new money transfer
             doInTransaction(cacheTx -> {
                 // Update account
                 cacheTx.getMap(Constants.HAZELCAST_ACCOUNTS).replace(account.getIdentifier(), account);
@@ -112,9 +118,12 @@ public class FrontEndAPI implements MessageListener {
                 // TODO handle if we got error for transfer
                 cacheTx.getMap(Constants.HAZELCAST_TRANSFERS + "_" + account.getIdentifier()).put(transfer.getTransferId(), transfer);
             });
+
+            logger.info("Updated cache {}, {}", account, transfer);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e); // Causing transaction rollback
+            logger.error("Error updating cache {} ({})", message, e.getMessage());
+            throw new RuntimeException(e); // Cause transaction rollback
         }
     }
 
@@ -132,14 +141,14 @@ public class FrontEndAPI implements MessageListener {
         tx.delistResource(xaCacheResource, XAResource.TMSUCCESS);
     }
 
-    static public class AccountAndTransfers {
+    static public class AccountAndTransfersDTO {
 
         private AccountDTO account;
         private Collection<MoneyTransferDTO> completed;
         private Collection<MoneyTransferDTO> pending;
 
-        public AccountAndTransfers(AccountDTO account, Collection<MoneyTransferDTO> completed,
-                                   Collection<MoneyTransferDTO> pending) {
+        public AccountAndTransfersDTO(AccountDTO account, Collection<MoneyTransferDTO> completed,
+                                      Collection<MoneyTransferDTO> pending) {
             this.account = account;
             this.completed = completed;
             this.pending = pending;

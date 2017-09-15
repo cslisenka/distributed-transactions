@@ -41,7 +41,7 @@ public class MyTransactionManager {
         xaRes1.end(xId1, XAResource.TMSUCCESS); // If we want to fail, set TMFAIL
         xaRes2.end(xId2, XAResource.TMSUCCESS); // If we want to fail, set TMFAIL
 
-        // Execute local transactions on both databases
+        // Execute nonxa transactions on both databases
         // Both data sources return vote if commit was OK
         int vote1 = xaRes1.prepare(xId1);
         int vote2 = xaRes2.prepare(xId2);

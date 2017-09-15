@@ -63,7 +63,7 @@ public class TestMySQLAndActiveMQ {
         xaMySQLRes2.end(xId2, XAResource.TMSUCCESS); // If we want to fail, set TMFAIL
         xaActiveMQRes.end(xId3, XAResource.TMSUCCESS);
 
-        // Execute local transactions on both databases
+        // Execute nonxa transactions on both databases
         // Both data sources return vote if commit was OK
         int vote1 = xaMySQLRes1.prepare(xId1);
         int vote2 = xaMySQLRes2.prepare(xId2);

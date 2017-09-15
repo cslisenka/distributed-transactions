@@ -20,7 +20,7 @@ public class MoneyTransferAPI {
 //        try {
 //
 //            // For demonstration reasons we can do request with account out of money or non-existing account (if SQL executed after WS-call - in this case TM triggers WS-reject)
-//            // Doing local transfer
+//            // Doing nonxa transfer
 //            String transferId = UUID.randomUUID().toString();
 ////            xaSQLTransferService.doTransferLocal(transferId, request.get("from"),
 ////                    partnerTransferId, request.get("to"), Integer.parseInt(request.get("amount")));

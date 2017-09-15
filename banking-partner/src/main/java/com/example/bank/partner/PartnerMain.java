@@ -126,7 +126,7 @@ public class PartnerMain {
 		return new DataSourceTransactionManager(dataSource());
 	}
 
-	// For manual management of local transactions
+	// For manual management of nonxa transactions
 	@Bean
 	public TransactionTemplate transaction() {
 		return new TransactionTemplate(transactionManager());

@@ -50,4 +50,12 @@ public class AccountDTO implements Serializable {
     public static AccountDTO from(MapMessage msg) throws JMSException {
         return new AccountDTO(msg.getString(IDENTIFIER), msg.getInt(BALANCE));
     }
+
+    @Override
+    public String toString() {
+        return "AccountDTO{" +
+                "identifier='" + identifier + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }

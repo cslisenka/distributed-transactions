@@ -79,7 +79,7 @@ public class FrontEndMain {
 	@Bean
 	public JmsTemplate jmsTemplate() {
 		JmsTemplate template = new JmsTemplate(atomikosActiveMQ());
-		template.setSessionTransacted(true); // TODO probably doesn't make sense for Atomimkos, only needed if local tx used
+		template.setSessionTransacted(true); // TODO probably doesn't make sense for Atomimkos, only needed if nonxa tx used
 		return template;
 	}
 

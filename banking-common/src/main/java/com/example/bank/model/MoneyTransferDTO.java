@@ -99,13 +99,14 @@ public class MoneyTransferDTO implements Serializable {
         }
     }
 
-    public void to(MapMessage msg) throws JMSException {
+    public MapMessage to(MapMessage msg) throws JMSException {
         msg.setString(TRANSFER_ID, transferId);
         msg.setString(ACCOUNT_FROM, from);
         msg.setString(ACCOUNT_TO, to);
         msg.setString(BANK_TO, toBank);
         msg.setInt(AMOUNT, amount);
         msg.setLong(DATE_TIME, dateTime.getTime());
+        return msg;
     }
 
     public static MoneyTransferDTO from(MapMessage msg) throws JMSException {
@@ -117,5 +118,17 @@ public class MoneyTransferDTO implements Serializable {
         result.setAmount(msg.getInt(AMOUNT));
         result.setDateTime(new Date(msg.getLong(DATE_TIME)));
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "MoneyTransferDTO{" +
+                "transferId='" + transferId + '\'' +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", toBank='" + toBank + '\'' +
+                ", amount=" + amount +
+                ", dateTime=" + dateTime +
+                '}';
     }
 }

@@ -25,7 +25,7 @@ public class HazelcastClientExample {
         map.put(generator.newId() + "", "value");
         printMap(client.getMap("test"));
 
-        // Doing actions within local transaction
+        // Doing actions within nonxa transaction
         TransactionOptions options = new TransactionOptions()
                 .setTransactionType(TransactionOptions.TransactionType.ONE_PHASE);
         TransactionContext context = client.newTransactionContext(options);
