@@ -1,0 +1,4 @@
+com\example\bank\api\StatisticsAPI.class
+com\example\bank\commands\ComplaintFiledEvent.class
+com\example\bank\AxonExampleReceiver$1.class
+com\example\bank\AxonExampleReceiver.class

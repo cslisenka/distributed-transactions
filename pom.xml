@@ -5,23 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.slisenko</groupId>
-    <artifactId>distributed-tx</artifactId>
+    <artifactId>distributed-transactions</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>database-jms-example</module>
         <module>atomikos-example</module>
-        <module>narayana-example</module>
         <module>atomikos-tcc-example</module>
-        <module>event-sourcing</module>
         <module>spring-statemachine</module>
         <module>axon-example</module>
         <module>axon-example-receiver</module>
-        <module>eventuate-example</module>
-        <module>banking-backend</module>
-        <module>banking-front-end</module>
-        <module>banking-common</module>
-        <module>banking-partner</module>
+        <module>travel-common</module>
+        <module>travel-backend</module>
+        <module>travel-client</module>
+        <module>flight-booking</module>
+        <module>car-booking</module>
     </modules>
 
     <dependencyManagement>

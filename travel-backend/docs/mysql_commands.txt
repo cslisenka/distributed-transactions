@@ -1,0 +1,45 @@
+show full processlist;
+show engine innodb status;
+
+# show xa transactions in progress
+xa recover;
+
+# Creating XA transaction
+mysql> XA START 'xatest';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO mytable (i) VALUES(10);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> XA END 'xatest';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> XA PREPARE 'xatest';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> XA COMMIT 'xatest';
+Query OK, 0 rows affected (0.00 sec)
+
+# Restoring failed XA transaction
+If you have a failed XA Transaction, it will show as "ACTIVE (PREPARED)" with process no 0 and thread id 0:
+
+mysql> show engine innodb status\G
+....
+---TRANSACTION 0 1192549934, ACTIVE (PREPARED) 791 sec, process no 0, OS thread id 0
+1 lock struct(s), heap size 368, undo log entries 3
+
+To rollback the transaction, first get its xid:
+
+mysql> xa recover;
++----------+--------------+--------------+------------------------------------------------------------+
+| formatID | gtrid_length | bqual_length | data                                                       |
++----------+--------------+--------------+------------------------------------------------------------+
+|   131075 |           30 |           28 | 1-a00640d:c09d:4ac454ef:b284c0a00640d:c09d:4ac454ef:b284c2 |
++----------+--------------+--------------+------------------------------------------------------------+
+1 row in set (2.13 sec)
+
+The xid is present in this output, but you have travelTo perform a little string manipulation travelTo get it. The format of a xid is: gtrid,bqual,formatID. The column 'data' contains a concatenation of 'gtrid' and 'bqual'. The columns 'gtrid_length' and 'bqual_length' specify how many bytes each of these values uses; use them travelTo split apart 'data'. In this example, the result is:
+
+mysql> xa rollback '1-a00640d:c09d:4ac454ef:b284c0','a00640d:c09d:4ac454ef:b284c2',131075;
+
+ERROR 1402 (XA100): XA_RBROLLBACK: Transaction branch was rolled back

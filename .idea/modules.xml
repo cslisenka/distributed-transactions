@@ -6,20 +6,20 @@
       <module fileurl="file://$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" filepath="$PROJECT_DIR$/atomikos-tcc-example/atomikos-tcc-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/axon-example/axon-example.iml" filepath="$PROJECT_DIR$/axon-example/axon-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/axon-example-receiver/axon-example-receiver.iml" filepath="$PROJECT_DIR$/axon-example-receiver/axon-example-receiver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/banking-backend/banking-backend.iml" filepath="$PROJECT_DIR$/banking-backend/banking-backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/banking-common/banking-common.iml" filepath="$PROJECT_DIR$/banking-common/banking-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/banking-front-end/banking-front-end.iml" filepath="$PROJECT_DIR$/banking-front-end/banking-front-end.iml" />
-      <module fileurl="file://$PROJECT_DIR$/banking-partner/banking-partner.iml" filepath="$PROJECT_DIR$/banking-partner/banking-partner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car-booking/car-booking.iml" filepath="$PROJECT_DIR$/car-booking/car-booking.iml" />
       <module fileurl="file://$PROJECT_DIR$/database-jms-example/database-jms-example.iml" filepath="$PROJECT_DIR$/database-jms-example/database-jms-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/distributed-tx.iml" filepath="$PROJECT_DIR$/distributed-tx.iml" />
-      <module fileurl="file://$PROJECT_DIR$/event-sourcing/event-sourcing.iml" filepath="$PROJECT_DIR$/event-sourcing/event-sourcing.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eventuate-example/eventuate-example.iml" filepath="$PROJECT_DIR$/eventuate-example/eventuate-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/axon-example/target/maven-archiver/maven-archiver (1).iml" filepath="$PROJECT_DIR$/axon-example/target/maven-archiver/maven-archiver (1).iml" />
-      <module fileurl="file://$PROJECT_DIR$/banking-backend/target/maven-archiver/maven-archiver (2).iml" filepath="$PROJECT_DIR$/banking-backend/target/maven-archiver/maven-archiver (2).iml" />
-      <module fileurl="file://$PROJECT_DIR$/banking-common/target/maven-archiver/maven-archiver (3).iml" filepath="$PROJECT_DIR$/banking-common/target/maven-archiver/maven-archiver (3).iml" />
-      <module fileurl="file://$PROJECT_DIR$/banking-partner/target/maven-archiver/maven-archiver (4).iml" filepath="$PROJECT_DIR$/banking-partner/target/maven-archiver/maven-archiver (4).iml" />
-      <module fileurl="file://$PROJECT_DIR$/narayana-example/narayana-example.iml" filepath="$PROJECT_DIR$/narayana-example/narayana-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/distributed-transactions.iml" filepath="$PROJECT_DIR$/distributed-transactions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flight-booking/flight-booking.iml" filepath="$PROJECT_DIR$/flight-booking/flight-booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/axon-example/target/maven-archiver/maven-archiver.iml" filepath="$PROJECT_DIR$/axon-example/target/maven-archiver/maven-archiver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car-booking/target/maven-archiver/maven-archiver (1).iml" filepath="$PROJECT_DIR$/car-booking/target/maven-archiver/maven-archiver (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/flight-booking/target/maven-archiver/maven-archiver (2).iml" filepath="$PROJECT_DIR$/flight-booking/target/maven-archiver/maven-archiver (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-backend/target/maven-archiver/maven-archiver (3).iml" filepath="$PROJECT_DIR$/travel-backend/target/maven-archiver/maven-archiver (3).iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-common/target/maven-archiver/maven-archiver (4).iml" filepath="$PROJECT_DIR$/travel-common/target/maven-archiver/maven-archiver (4).iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-common/target/maven-archiver/maven-archiver (5).iml" filepath="$PROJECT_DIR$/travel-common/target/maven-archiver/maven-archiver (5).iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-statemachine/spring-statemachine.iml" filepath="$PROJECT_DIR$/spring-statemachine/spring-statemachine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-backend/travel-backend.iml" filepath="$PROJECT_DIR$/travel-backend/travel-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-client/travel-client.iml" filepath="$PROJECT_DIR$/travel-client/travel-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-common/travel-common.iml" filepath="$PROJECT_DIR$/travel-common/travel-common.iml" />
     </modules>
   </component>
 </project>

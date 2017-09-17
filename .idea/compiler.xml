@@ -10,24 +10,24 @@
         <module name="atomikos-tcc-example" />
         <module name="axon-example" />
         <module name="axon-example-receiver" />
-        <module name="banking-backend" />
-        <module name="banking-common" />
-        <module name="banking-front-end" />
-        <module name="banking-partner" />
+        <module name="car-booking" />
         <module name="database-jms-example" />
-        <module name="event-sourcing" />
-        <module name="eventuate-example" />
+        <module name="flight-booking" />
+        <module name="maven-archiver (1)" />
         <module name="maven-archiver (2)" />
         <module name="maven-archiver (3)" />
         <module name="maven-archiver (4)" />
-        <module name="narayana-example" />
+        <module name="maven-archiver (5)" />
         <module name="spring-statemachine" />
+        <module name="travel-backend" />
+        <module name="travel-client" />
+        <module name="travel-common" />
       </profile>
       <profile name="Annotation profile for Unknown" enabled="true">
         <sourceOutputDir name="../generated-sources/annotations" />
         <sourceTestOutputDir name="../generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="maven-archiver (1)" />
+        <module name="maven-archiver" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -35,21 +35,22 @@
       <module name="atomikos-tcc-example" target="1.8" />
       <module name="axon-example" target="1.8" />
       <module name="axon-example-receiver" target="1.8" />
-      <module name="banking-backend" target="1.8" />
-      <module name="banking-common" target="1.6" />
-      <module name="banking-front-end" target="1.8" />
-      <module name="banking-hazelcast" target="1.8" />
-      <module name="banking-partner" target="1.8" />
+      <module name="car-booking" target="1.8" />
       <module name="database-jms-example" target="1.8" />
+      <module name="distributed-transactions" target="1.8" />
       <module name="distributed-tx" target="1.8" />
       <module name="event-sourcing" target="1.8" />
-      <module name="eventuate-example" target="1.8" />
+      <module name="flight-booking" target="1.8" />
+      <module name="maven-archiver" target="1.5" />
       <module name="maven-archiver (1)" target="1.5" />
       <module name="maven-archiver (2)" target="1.5" />
       <module name="maven-archiver (3)" target="1.5" />
       <module name="maven-archiver (4)" target="1.5" />
-      <module name="narayana-example" target="1.8" />
+      <module name="maven-archiver (5)" target="1.5" />
       <module name="spring-statemachine" target="1.6" />
+      <module name="travel-backend" target="1.8" />
+      <module name="travel-client" target="1.8" />
+      <module name="travel-common" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

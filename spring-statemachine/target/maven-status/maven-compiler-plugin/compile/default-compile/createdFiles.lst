@@ -1,0 +1,5 @@
+com\slisenko\examples\test\OrderEvent.class
+com\slisenko\examples\test\OrderState.class
+com\slisenko\examples\test\StateMachineConfig.class
+com\slisenko\examples\test\Main.class
+com\slisenko\examples\test\StateMachineConfig$1.class

@@ -1,0 +1,16 @@
+com\slisenko\examples\xa\activemq\TestXAActiveMQProducer.class
+com\slisenko\examples\test\activemq\TestRedeliveryPolicy.class
+com\slisenko\examples\xa\mysql\TestBothSuccess.class
+com\slisenko\examples\xa\mysql\TestOneSuccessOneFail.class
+com\slisenko\examples\test\hazelcast\HazelcastClientExample.class
+com\slisenko\examples\xa\mysql\util\MyTransactionManager.class
+com\slisenko\examples\test\activemq\TestTransactions.class
+com\slisenko\examples\test\activemq\TestClientAcknowledge.class
+com\slisenko\examples\xa\hazelcast\DatabaseWithCacheXATransactionExample.class
+com\slisenko\examples\test\activemq\TestActiveMQ.class
+com\slisenko\examples\xa\TestMySQLAndActiveMQ.class
+com\slisenko\examples\test\hazelcast\HazelcastExample.class
+com\slisenko\examples\test\mysql\TestMySQL.class
+com\slisenko\examples\test\hazelcast\HazelcastServer.class
+com\slisenko\examples\xa\mysql\TestMySQLTwoDatabases.class
+com\slisenko\examples\xa\mysql\util\WorkUnit.class

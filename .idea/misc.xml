@@ -4,15 +4,16 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/car-booking/target/maven-archiver/pom.properties" />
         <option value="$PROJECT_DIR$/axon-example/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/banking-common/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/banking-backend/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/banking-partner/target/maven-archiver/pom.properties" />
+        <option value="$PROJECT_DIR$/travel-common/target/maven-archiver/pom.properties" />
+        <option value="$PROJECT_DIR$/flight-booking/target/maven-archiver/pom.properties" />
+        <option value="$PROJECT_DIR$/travel-backend/target/maven-archiver/pom.properties" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/banking-hazelcast/pom.xml" />
+        <option value="$PROJECT_DIR$/event-sourcing/pom.xml" />
       </set>
     </option>
   </component>
