@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.jms.MapMessage;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.Queue;
@@ -69,6 +68,9 @@ public class TravelBackendAPI implements MessageListener {
         }
     }
 
+    // TODO after getting messages redelivered several times, following message is printed by Atomikos
+    // TODO Possible poison message detected - check https://www.atomikos.com/Documentation/PoisonMessage:
+    // TODO see MessageConsumerSession.checkRedeliveryLimit() - this code only prints warning, but doesn't prevent from further redelovery?
     // We are already in JTA transaction because we are using Atomikos JMS container
     @Override
     public void onMessage(Message message) {
