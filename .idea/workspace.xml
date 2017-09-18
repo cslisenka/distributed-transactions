@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9bb0098-9dfb-4b18-9e6e-2d974efde6e1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/api/AbstractBackendAPI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/api/NonXABackendAPI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/api/deprecated/BackendAPI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferAPI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/api/deprecated/MoneyTransferRequestListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/service/AtomikosLogsCleaner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/service/DatabaseCleanupService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/service/HotelHTTPService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-common/src/main/java/com/example/bank/model/AccountDTO.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-common/src/main/java/com/example/bank/model/MoneyTransferDTO.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/travel-common/src/main/java/com/example/bank/model/OverdraftException.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/bank/config/NonXAConfiguration.java" afterPath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/travel/NonXAConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/travel/TravelBackendAPI.java" afterPath="$PROJECT_DIR$/travel-backend/src/main/java/com/example/travel/TravelBackendAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel-backend/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/travel-backend/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel-common/src/main/java/com/example/travel/model/Constants.java" afterPath="$PROJECT_DIR$/travel-common/src/main/java/com/example/travel/model/Constants.java" />
-    </list>
+    <list default="true" id="d9bb0098-9dfb-4b18-9e6e-2d974efde6e1" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/flight-booking/target/" />
     <ignored path="$PROJECT_DIR$/event-sourcing/target/" />
     <ignored path="$PROJECT_DIR$/travel-common/target/" />
@@ -706,6 +688,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -899,6 +882,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel-backend/sql/travel-agency.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel-backend/sql/hotels.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flight-booking/sql/flights.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/car-booking/sql/cars.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

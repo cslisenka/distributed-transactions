@@ -1,0 +1,56 @@
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+--
+-- Host: localhost    Database: flights
+-- ------------------------------------------------------
+-- Server version	5.7.12-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `available_seats`
+--
+
+DROP TABLE IF EXISTS `available_seats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `available_seats` (
+  `seat_number` int(11) NOT NULL AUTO_INCREMENT,
+  `travel_to` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `travel_from` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `traveller_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `seat_booking_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`seat_number`),
+  UNIQUE KEY `seat_number_UNIQUE` (`seat_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `available_seats`
+--
+
+LOCK TABLES `available_seats` WRITE;
+/*!40000 ALTER TABLE `available_seats` DISABLE KEYS */;
+INSERT INTO `available_seats` VALUES (181,'Vienna','Minsk','Constantine','FLIGHT-5d564ccc-cb83-4a76-be96-449335ac4703','CONFIRMED'),(182,'Vienna','Minsk','Constantine','FLIGHT-b83993cc-7122-434c-ab48-4a34cba385e9','CONFIRMED'),(183,'Vienna','Minsk','Constantine','FLIGHT-c7e88839-caf6-45ea-bba0-bd654df518e2','CONFIRMED'),(184,'Frankfurt','Minsk','Constantine','FLIGHT-14fa1f9f-443b-4c92-8b9a-2008e1e73444','CONFIRMED'),(185,'New York','Minsk','Constantine','FLIGHT-02c04250-a132-4d76-beed-2f53d79d72a8','CONFIRMED'),(186,'Chicago','Minsk','Constantine','FLIGHT-49a1c560-7385-4b96-818e-eae160cca9c5','CONFIRMED'),(187,NULL,NULL,NULL,NULL,'AVAILABLE'),(188,NULL,NULL,NULL,NULL,'AVAILABLE'),(189,NULL,NULL,NULL,NULL,'AVAILABLE'),(190,NULL,NULL,NULL,NULL,'AVAILABLE'),(191,NULL,NULL,NULL,NULL,'AVAILABLE'),(192,NULL,NULL,NULL,NULL,'AVAILABLE'),(193,NULL,NULL,NULL,NULL,'AVAILABLE'),(194,NULL,NULL,NULL,NULL,'AVAILABLE'),(195,NULL,NULL,NULL,NULL,'AVAILABLE'),(196,NULL,NULL,NULL,NULL,'AVAILABLE'),(197,NULL,NULL,NULL,NULL,'AVAILABLE'),(198,NULL,NULL,NULL,NULL,'AVAILABLE'),(199,NULL,NULL,NULL,NULL,'AVAILABLE'),(200,NULL,NULL,NULL,NULL,'AVAILABLE');
+/*!40000 ALTER TABLE `available_seats` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-09-18 11:16:32
